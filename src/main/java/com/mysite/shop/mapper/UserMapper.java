@@ -38,4 +38,10 @@ public interface UserMapper {
 			"set user_pw = #{user_pw} " +
 			"where user_idx = #{user_idx}")
 	void modifyUserInfo(UserBean modifyUserBean);
+	
+	//인덱스로 유저이름찾기
+	@Select("select user_name " +
+			"from user_table " +
+			"where user_idx = #{user_idx}")
+	String getUserName(int user_idx);
 }

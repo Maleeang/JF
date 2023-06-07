@@ -11,7 +11,8 @@ import org.springframework.web.context.annotation.SessionScope;
 @SessionScope
 public class LoginUserBean {
 
-	private int user_idx;	
+	private int user_idx;
+	
 	private String user_name;
 	
 	@Size(min=4, max=20, message="id는 4~20자")

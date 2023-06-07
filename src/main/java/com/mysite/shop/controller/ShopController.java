@@ -19,8 +19,10 @@ import com.mysite.shop.beans.CartBean;
 import com.mysite.shop.beans.GoodsBean;
 import com.mysite.shop.beans.LoginUserBean;
 import com.mysite.shop.beans.PageBean;
+import com.mysite.shop.beans.ReviewBean;
 import com.mysite.shop.beans.ShopBean;
 import com.mysite.shop.service.ShopService;
+import com.mysite.shop.service.UserService;
 
 @Controller
 @RequestMapping("/shop")
@@ -32,9 +34,13 @@ public class ShopController {
 	@Autowired
 	ShopService shopService;
 	
+	@Autowired
+	UserService userService;
+	
 	@GetMapping("/join")
-	public String join(@ModelAttribute("joinShopBean") ShopBean shopbean) {
+	public String join(@ModelAttribute("joinShopBean") ShopBean shopbean, Model model) {
 		if(shopService.getMyShop(loginUserBean.getUser_idx()) != null) {
+			model.addAttribute("user_idx", loginUserBean.getUser_idx());
 			return "shop/goMyShop";
 		}
 		return "shop/join";
@@ -52,11 +58,11 @@ public class ShopController {
 	
 	@GetMapping("/myShop")
 	public String myShop(@ModelAttribute("ShopBean") ShopBean shopBean, Model model,
-			@RequestParam(value="page", defaultValue="1") int page) {
-		shopBean = shopService.selectShopInfo();
+			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="user_idx") int user_idx) {
+		shopBean = shopService.selectShopInfo(user_idx);
 		model.addAttribute("ShopBean",shopBean);
 		
-		List<GoodsBean> goodsList = shopService.myShopListService(loginUserBean.getUser_idx(), page);
+		List<GoodsBean> goodsList = shopService.myShopListService(user_idx, page);
 		model.addAttribute("goodsList", goodsList);
 		
 		PageBean pageBean = shopService.getContentCnt(page);
@@ -98,9 +104,16 @@ public class ShopController {
 	}
 	
 	@GetMapping("/goods_detail")
-	public String goods_detail(Model model, @RequestParam(value="goods_idx") int goods_idx, @ModelAttribute("CartBean") CartBean cartBean) {
+	public String goods_detail(Model model, @RequestParam(value="goods_idx") int goods_idx, @ModelAttribute("CartBean") CartBean cartBean, @ModelAttribute("ReviewBean") ReviewBean reviewBean) {
 		GoodsBean goodsBean = shopService.getOneGoods(goods_idx);
 		model.addAttribute("goodsBean", goodsBean);
+		
+		List<ReviewBean> reviewList = shopService.reviewListService(goods_idx);
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("loginUserBean", loginUserBean);
+		
+		ShopBean shopBean = shopService.getMyShop(goodsBean.getUser_idx());
+		model.addAttribute("shopBean", shopBean);
 		return "shop/goods_detail";
 	}
 	
@@ -127,5 +140,21 @@ public class ShopController {
 	public String deleteGoods(@RequestParam(value="goods_idx") int goods_idx) {
 		shopService.deleteGoods(goods_idx);
 		return "shop/delete_goods";
+	}
+	
+	@PostMapping("/write_review")
+	public String write_review(@Valid @ModelAttribute("ReviewBean") ReviewBean reviewBean, BindingResult result,Model model) {
+		reviewBean.setUser_idx(loginUserBean.getUser_idx());
+		reviewBean.setUser_name(userService.getUserName(loginUserBean.getUser_idx()));
+		shopService.addReview(reviewBean);
+		model.addAttribute("reviewBean", reviewBean);
+		return "shop/review_success";
+	}
+	
+	@GetMapping("/delete_review")
+	public String deleteReview(@RequestParam(value="review_idx") int review_idx, @RequestParam(value="goods_idx") int goods_idx, Model model) {
+		shopService.deleteReview(review_idx);
+		model.addAttribute("goods_idx", goods_idx);
+		return "shop/delete_review";
 	}
 }

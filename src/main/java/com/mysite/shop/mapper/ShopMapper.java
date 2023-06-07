@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.session.RowBounds;
 
 import com.mysite.shop.beans.GoodsBean;
+import com.mysite.shop.beans.ReviewBean;
 import com.mysite.shop.beans.ShopBean;
 
 @Mapper
@@ -67,4 +68,19 @@ public interface ShopMapper {
 	
 	@Delete("delete from goods where goods_idx=#{goods_idx}")
 	void deleteGoods(int goods_idx);
+	
+	//리뷰등록
+	@Insert("insert into review (review_idx, review_score, review_content, goods_idx, user_idx, review_date, user_name) " +
+			"values (review_seq.nextval, #{review_score}, #{review_content}, #{goods_idx}, #{user_idx}, sysdate, #{user_name})")
+	void addReview(ReviewBean reviewBean);
+	
+	//리뷰가져오기
+	@Select("select * " + 
+			"from review " +
+			"where goods_idx = #{goods_idx}" +
+			"order by review_idx desc")
+	List<ReviewBean> getReviewList(int goods_idx);
+	
+	@Delete("delete from review where review_idx=#{review_idx}")
+	void deleteReview(int review_idx);
 }

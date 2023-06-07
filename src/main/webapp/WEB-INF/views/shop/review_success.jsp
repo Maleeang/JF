@@ -3,5 +3,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <script>
-	location.href = "${root}shop/myShop?user_idx=${user_idx}"
+	location.href = "${root}shop/goods_detail?goods_idx=${reviewBean.goods_idx}"
 </script>

@@ -60,4 +60,9 @@ public class UserService {
 		
 		userMapper.modifyUserInfo(modifyUserBean);
 	}
+	
+	public String getUserName(int user_idx) {
+		String user_name = userMapper.getUserName(user_idx);
+		return user_name;
+	}
 }

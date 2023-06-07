@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mysite.shop.beans.GoodsBean;
 import com.mysite.shop.beans.LoginUserBean;
 import com.mysite.shop.beans.PageBean;
+import com.mysite.shop.beans.ReviewBean;
 import com.mysite.shop.beans.ShopBean;
 import com.mysite.shop.mapper.ShopMapper;
 
@@ -57,8 +58,8 @@ public class ShopService {
 		return shopMapper.selectShopInfo(user_idx);
 	}
 	
-	public ShopBean selectShopInfo() {
-		return shopMapper.selectShopInfo(loginUserBean.getUser_idx());
+	public ShopBean selectShopInfo(int user_idx) {
+		return shopMapper.selectShopInfo(user_idx);
 	}
 	
 	//서버로 업로드 된 파일을 업로드 폴더에 저장하고 파일의 이름을 리턴하는 메소드
@@ -151,5 +152,20 @@ public class ShopService {
 	
 	public void deleteGoods(int goods_idx) {
 		shopMapper.deleteGoods(goods_idx);
+	}
+	
+	//리뷰등록
+	public void addReview(ReviewBean reviewBean) {
+		shopMapper.addReview(reviewBean);
+	}
+	
+	//리뷰 상품불러오기
+	public List<ReviewBean> reviewListService(int goods_idx) {
+
+		return shopMapper.getReviewList(goods_idx);
+	}
+	
+	public void deleteReview(int review_idx) {
+		shopMapper.deleteReview(review_idx);
 	}
 }

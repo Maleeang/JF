@@ -50,8 +50,9 @@ public class UserController {
 	
 
 	@GetMapping("/logout")
-	public String logout() {
+	public String logout(HttpSession session) {
 		loginUserBean.setUserLogin(false);
+		session.invalidate();
 		return "user/logout";
 	}
 	
