@@ -1,5 +1,6 @@
 package com.mysite.shop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -28,8 +29,29 @@ public class MainController {
 	public String main(Model model,
 			@RequestParam(value="page", defaultValue="1") int page) {
 
+		List<GoodsBean> JaList = new ArrayList<GoodsBean>();
+		List<GoodsBean> ClothingList = new ArrayList<GoodsBean>();
+		List<GoodsBean> ArtList = new ArrayList<GoodsBean>();
+		List<GoodsBean> OtherList = new ArrayList<GoodsBean>();
 		List<GoodsBean> goodsList = shopService.goodsListService(page);
-		model.addAttribute("goodsList", goodsList);
+		for (GoodsBean goodsBean : goodsList) {
+			
+			if(goodsBean.getGoods_category().contains("Jewelry&Accessories")) {
+				JaList.add(goodsBean);
+			} else if(goodsBean.getGoods_category().contains("Clothing")) {
+				ClothingList.add(goodsBean);			
+			} else if(goodsBean.getGoods_category().contains("Art&Collection")) {
+				ArtList.add(goodsBean);			
+			} else if(goodsBean.getGoods_category().contains("Other")) {
+				OtherList.add(goodsBean);			
+			}
+		}
+		System.out.println(JaList);
+		System.out.println(ClothingList);
+		model.addAttribute("JaList", JaList);
+		model.addAttribute("ClothingList", ClothingList);
+		model.addAttribute("ArtList", ArtList);
+		model.addAttribute("OtherList", OtherList);
 		
 		PageBean pageBean = shopService.getContentCnt(page);
 		model.addAttribute("pageBean", pageBean);
