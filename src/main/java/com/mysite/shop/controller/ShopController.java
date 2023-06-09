@@ -68,6 +68,8 @@ public class ShopController {
 		PageBean pageBean = shopService.getContentCnt(page);
 		model.addAttribute("pageBean", pageBean);
 		model.addAttribute("page", page);
+		
+		model.addAttribute("loginUser", loginUserBean.getUser_idx());
 		return "shop/myShop";
 	}
 	

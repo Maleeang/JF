@@ -24,44 +24,61 @@ form span {
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
+<style>
+</style>
 <body>
 	<!-- 상단 메뉴 부분 -->
 	<c:import url="/WEB-INF/views/include/menu.jsp" />
 
-	<div class="container" style="margin-top: 100px">
-		<div class="row">
-			<div class="col-sm-1"></div>
+
+	<div class="container" style="margin-top: 50px">
+		<h6>${goodsBean.goods_category}&nbsp;&raquo;&raquo;
+			${goodsBean.goods_name}</h6>
+		<div class="row" style="margin-top: 50px">
 			<div class="col-sm-5" style="margin-right: 30px;">
-				<div class="card shadow" style="height: 500px;">
+				<div class="card shadow" style="height: 400px;">
 					<img src="${root}upload/${goodsBean.goods_picture}" width="100%"
-						height="100%" />
+						height="100%" style="border-radius:15px"/>
 				</div>
 			</div>
-			<div class="col-sm-5" style="margin-left: 30px;">
-				<div class="card shadow">
-					<div class="card-body" style="height: 500px;">
-						<h2>${goodsBean.goods_name}</h2>
-						<p style="text-align: right; margin-top: 60px;">${goodsBean.goods_price}원</p>
-						<p style="margin-top: 40px;">${goodsBean.goods_des}</p>
-						<form:form action="${root}cart/add_cart" modelAttribute="CartBean">
-							<div class="input-group mb-3" style="margin-top: 40px;">
-								<span class="input-group-text" id="basic-addon1">구매수량 : </span>
-								<form:input path="goods_quantity" class="form-control"
-									name="goods_quantity" aria-describedby="basic-addon1" value="1" />
-								<form:input type="hidden" path="goods_idx" name="goods_idx"
-									value="${goodsBean.goods_idx}"></form:input>
-							</div>
-							<div class="form-group">
-								<div class="text-right" style="margin-top: 60px;">
-									<button type="submit" class="btn btn-primary"
-										style="color: #ffffff;">장바구니</button>
-									<a href="${root}cart/cartlist" class="btn btn-danger"
-										style="color: #ffffff;">상품구매</a>
-								</div>
-							</div>
-						</form:form>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-5">
+				<h3 style="border-bottom: solid 1px #ccc; padding-bottom: 15px">${goodsBean.goods_name}</h3>
+				<h6 style="margin-top: 20px; font: bold">
+					<b>상세설명</b>
+				</h6>
+				<p style="margin-top: 15px; margin-left: 10px">${goodsBean.goods_des}</p>
+				<p style="text-align: right; margin-top: 60px;">가격 &raquo;
+					${goodsBean.goods_price} 원</p>
+				<form:form action="${root}cart/add_cart" modelAttribute="CartBean">
+					<div class="input-group mb-3" style="margin-top: 40px;">
+						<div class="input-group">
+							<span class="input-group-text" id="basic-addon1"
+								style="background-color: white !important; border: none; border-bottom: solid 1px; border-radius: 0px">수량
+								&raquo; </span>
+							<form:input path="goods_quantity" class="form-control"
+								name="goods_quantity" aria-describedby="basic-addon1" value="1"
+								id="result"
+								style="background-color:white !important; border:none; border-bottom:solid 1px; border-radius:0px" />
+							<input class="btn btn-outline-secondary" type="button"
+								onClick='count("plus");' value="+"
+								style="background-color: white !important; border: none; border-bottom: solid 1px; border-radius: 0px"></input>
+							<input class="btn btn-outline-secondary" type="button"
+								onClick='count("minus"); return false;' value="-"
+								style="background-color: white !important; border: none; border-bottom: solid 1px; border-radius: 0px"></input>
+						</div>
+						<form:input type="hidden" path="goods_idx" name="goods_idx"
+							value="${goodsBean.goods_idx}"></form:input>
 					</div>
-				</div>
+					<div class="form-group">
+						<div class="text-right" style="margin-top: 60px;">
+							<button type="submit" class="btn btn-primary"
+								style="color: #ffffff;">장바구니</button>
+							<a href="${root}cart/cartlist" class="btn btn-danger"
+								style="color: #ffffff;">상품구매</a>
+						</div>
+					</div>
+				</form:form>
 			</div>
 			<div class="col-sm-1"></div>
 		</div>
@@ -69,72 +86,85 @@ form span {
 
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6" style="margin-top: 20px">
-				<div class="card shadow">
-					<div class="card-body">
-						<h4 class="card-title">Review</h4>
-						<table class="table table-hover" id="board_list">
-							<thead>
-								<tr>
-									<th class="text-center w-25">별점</th>
-									<th>내용</th>
-									<th>작성자</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="review" items="${reviewList}">
-									<tr>
-										<td class="text-center">${review.review_score}</td>
-										<th>${review.review_content}</th>
-										<td>${review.user_name}<br> <c:if
-												test="${review.user_idx == loginUserBean.user_idx}">
-												<a
-													href="${root}shop/delete_review?review_idx=${review.review_idx}&goods_idx=${review.goods_idx}">삭제하기</a>
-											</c:if></td>
-									</tr>
+			<div class="col-lg-5" style="margin-top: 40px">
+				<h4	style="border-bottom: solid 1px #ccc; padding-bottom: 15px;">Review</h4>
+				<c:forEach var="review" items="${reviewList}">
+					<div style="border-bottom: solid 1px #ccc">
+						<p>${review.review_score}</p>
+						<p>${review.review_content}</p>
+						<p>
+							작성자&nbsp;&raquo;&nbsp;${review.user_name}&nbsp;
+							<c:if test="${review.user_idx == loginUserBean.user_idx}">
+								<a
+									href="${root}shop/delete_review?review_idx=${review.review_idx}&goods_idx=${review.goods_idx}">삭제하기</a>
+							</c:if>
+						</p>
+					</div>
+				</c:forEach>
+				<form:form action="${root}shop/write_review"
+					modelAttribute="ReviewBean">
+					<div class="row" style="margin-top: 20px; margin-left: 0px">
+						<form:select path="review_score" class="custom-select my-select"
+							style="width:160px;">
+							<option>⭐⭐⭐⭐⭐</option>
+							<option>⭐⭐⭐⭐</option>
+							<option>⭐⭐⭐</option>
+							<option>⭐⭐</option>
+							<option>⭐</option>
+						</form:select>
+						<form:input path="review_content" style="width:285px;"></form:input>
+					</div>
+					<form:input type="hidden" path="goods_idx" name="goods_idx"
+						value="${goodsBean.goods_idx}"></form:input>
+					<div class="text-right" style="margin-top:15px">
+						<button type="submit" class="btn btn-dark" style="border-radius:24px; min-width: 150px;">리뷰쓰기</button>
+					</div>
 
-								</c:forEach>
-							</tbody>
-						</table>
-						<form:form action="${root}shop/write_review"
-							modelAttribute="ReviewBean">
-							<form:select path="review_score" class="custom-select my-select">
-								<option>⭐⭐⭐⭐⭐</option>
-								<option>⭐⭐⭐⭐</option>
-								<option>⭐⭐⭐</option>
-								<option>⭐⭐</option>
-								<option>⭐</option>
-							</form:select>
-							<form:textarea rows="1" cols="40" path="review_content"></form:textarea>
-							<form:input type="hidden" path="goods_idx" name="goods_idx"
-								value="${goodsBean.goods_idx}"></form:input>
-							<button type="submit" class="btn btn-primary">리뷰쓰기</button>
-						</form:form>
+				</form:form>
+			</div>
+			<div class="col-lg-1"></div>
+			<div class="col-lg-5" style="margin-top: 35px; margin-left:30px">
+				<h4 style="border-bottom: solid 1px #ccc; padding-bottom: 15px;">Meet your seller</h4>
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-lg-4">
+						<img src="${root}upload/${shopBean.shop_picture}" width="100%" style="border-radius:15px">
+					</div>
+					<div class="col-lg-8">
+						<h6>Shop Name</h6>
+						<p style="margin-top:15px">${shopBean.shop_name}</p>
+						<a type="button" class="btn btn-dark" href="${root}shop/myShop?user_idx=${goodsBean.user_idx}" style="border-radius:24px; min-width: 100px; width:100% !important; margin-top:50px">판매자
+							상점 방문하기</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6" style="margin-top: 20px">
-				<div class="card shadow">
-					<div class="card-body">
-						<h4 class="card-title">Meet your seller</h4>
-						<div class="row">
-							<div class="col-lg-4">
-								<img src="${root}upload/${shopBean.shop_picture}" width="100%">
-							</div>
-							<div class="col-lg-8">
-								<p>${shopBean.shop_name}</p>
-								<a href="${root}shop/myShop?user_idx=${goodsBean.user_idx}">판매자 상점 방문하기</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="col-lg-1"></div>
 		</div>
 
 	</div>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
+	<script>
+		//수량 증가, 감소 버튼
+		function count(type) {
+			const input = $('#result');
+
+			let number = input.val();
+
+			if (type === 'plus') {
+				number = parseInt(number) + 1;
+			} else if (type === 'minus') {
+				if (number <= 1) {
+
+				} else {
+					number = parseInt(number) - 1;
+				}
+
+			}
+
+			input.attr('value', number);
+		}
+	</script>
 </body>
 </html>
 

@@ -25,32 +25,69 @@
 
 	<!-- 본문 -->
 	<div class="container" style="margin-top: 90px">
-		<c:forEach var="item" items="${cartList}">
-			<div class="row" style="margin-top: 30px">
-				<div class="col-md-5">
-					<img src="${root}upload/${item.getGoods_picture()}"
-						style="width: 50%">
+		<h3 style="margin-bottom: 18px">Cart Item</h3>
+		<div class="row">
+			<div class="col-sm-7">
+				<c:forEach var="item" items="${cartList}">
+					<div class="row"
+						style="margin-bottom: 30px; border-top: solid 1px #ccc; padding-top: 20px">
+						<div class="col-md-4">
+							<img src="${root}upload/${item.getGoods_picture()}"
+								style="width: 50%">
+						</div>
+						<div class="col-md-3">
+							<h5>
+								<b>${item.getGoods_name()}</b>
+							</h5>
+							<p style="padding-top: 20px">수량 :
+								${item.getGoods_quantity()}개
+							<p>합계 : ${item.getTotal_price()}원</p>
+						</div>
+						<div class="col-md-2"></div>
+						<div class="col-md-2 row align-items-center">
+							<a href="${root}cart/delete_cart?cart_idx=${item.getCart_idx()}"
+								class="btn btn-secondary" role="button"
+								style="text-align: center; border-radius:24px;">삭제하기 &raquo;</a>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-3" style="margin-right: 30px;">
+				<h4 style="margin-bottom: 30px">Payment</h4>
+				<div class="form-check"
+					style="border-top: solid 1px #ccc; margin-bottom: 8px; padding-top: 8px">
+					<input class="form-check-input" type="radio"
+						name="flexRadioDefault" id="flexRadioDefault1"> <label
+						class="form-check-label" for="flexRadioDefault1"> 신용카드</label>
 				</div>
-				<div class="col-md-5">
-					<p>
-					<h5>
-						<b>[${item.getGoods_name()}</b>
-					</h5>
-					<p style="padding-top: 20px">${item.getGoods_quantity()}개
-					<p>${item.getTotal_price()}원</p>
+				<div class="form-check"
+					style="border-top: solid 1px #ccc; margin-bottom: 8px; padding-top: 8px">
+					<input class="form-check-input" type="radio"
+						name="flexRadioDefault" id="flexRadioDefault2" checked> <label
+						class="form-check-label" for="flexRadioDefault2"> 휴대폰 결제</label>
 				</div>
-				<div class="col-md-2" style="padding-top: 70px">
-					<a href="${root}cart/delete_cart?cart_idx=${item.getCart_idx()}"
-						class="btn btn-secondary" role="button">삭제하기 &raquo;</a>
+				<div class="form-check"
+					style="border-top: solid 1px #ccc; margin-bottom: 8px; padding-top: 8px">
+					<input class="form-check-input" type="radio"
+						name="flexRadioDefault" id="flexRadioDefault2" checked> <label
+						class="form-check-label" for="flexRadioDefault2"> 무통장입금</label>
+				</div>
+				<div class="form-check"
+					style="border-top: solid 1px #ccc; margin-bottom: 8px; padding-top: 8px">
+					<input class="form-check-input" type="radio"
+						name="flexRadioDefault" id="flexRadioDefault2" checked> <label
+						class="form-check-label" for="flexRadioDefault2"> 기타 결제</label>
+				</div>
+				<div class="text-right" style="margin-top: 40px">
+					<h5>총액 : ${totalprice}원</h5>
+				</div>
+				<div class="text-center" style="margin-top: 70px">
+					<a href="${root}cart/pay?totalprice=${totalprice}"
+						class="btn btn-dark" role="button" style="border-radius:24px; min-width: 100px; width:100% !important;" >결제하기 &raquo;</a>
 				</div>
 			</div>
-		</c:forEach>
-		<div class="text-right" style="margin-top: 50px">
-			<b>총액 : ${totalprice}</b>
-		</div>
-		<div class="text-right" style="margin-top: 30px">
-			<a href="${root}cart/pay?totalprice=${totalprice}"
-				class="btn btn-primary" role="button">결제하기 &raquo;</a>
+			<div class="col-sm-1"></div>
 		</div>
 	</div>
 	<!-- 하단 푸터부분 -->

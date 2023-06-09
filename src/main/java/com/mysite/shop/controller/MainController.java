@@ -29,13 +29,14 @@ public class MainController {
 	public String main(Model model,
 			@RequestParam(value="page", defaultValue="1") int page) {
 
+		//카테고리별로 구분해서 리스트에담기
 		List<GoodsBean> JaList = new ArrayList<GoodsBean>();
 		List<GoodsBean> ClothingList = new ArrayList<GoodsBean>();
 		List<GoodsBean> ArtList = new ArrayList<GoodsBean>();
 		List<GoodsBean> OtherList = new ArrayList<GoodsBean>();
 		List<GoodsBean> goodsList = shopService.goodsListService(page);
+		
 		for (GoodsBean goodsBean : goodsList) {
-			
 			if(goodsBean.getGoods_category().contains("Jewelry&Accessories")) {
 				JaList.add(goodsBean);
 			} else if(goodsBean.getGoods_category().contains("Clothing")) {
@@ -46,8 +47,7 @@ public class MainController {
 				OtherList.add(goodsBean);			
 			}
 		}
-		System.out.println(JaList);
-		System.out.println(ClothingList);
+
 		model.addAttribute("JaList", JaList);
 		model.addAttribute("ClothingList", ClothingList);
 		model.addAttribute("ArtList", ArtList);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}/" />
 
 <!DOCTYPE html>
 <html>
@@ -24,14 +25,14 @@
 
 	<!-- 본문 -->
 	<div class="container">
-		<h4 style="margin-top: 60px; border-top:1px solid; padding-top:10px">Jewelry&Accessories</h4>
+		<h4 style="margin-top: 60px;">Jewelry & Accessories</h4>
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<c:forEach var="i" begin="0" end="3">
 				<div class="col-lg-3" style="margin-top: 25px;">
 					<div class="card shadow-sm">
 						<img src="${root}upload/${JaList[i].getGoods_picture()}" style="width: 100%; height: 250px">
 						<div class="card-body">
-							<h3 class="card-text">${JaList[i].getGoods_name()}</h3>
+							<h4 class="card-text">${JaList[i].getGoods_name()}</h4>
 							<p class="card-text">${JaList[i].getGoods_price()}원</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
@@ -55,7 +56,7 @@
 					<div class="card shadow-sm">
 						<img src="${root}upload/${ClothingList[i].getGoods_picture()}" style="width: 100%; height: 250px">
 						<div class="card-body">
-							<h3 class="card-text">${ClothingList[i].getGoods_name()}</h3>
+							<h4 class="card-text">${ClothingList[i].getGoods_name()}</h4>
 							<p class="card-text">${ClothingList[i].getGoods_price()}원</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
@@ -72,14 +73,14 @@
 	</div>
 	
 	<div class="container">
-		<h4 style="margin-top: 40px;">Art&Collection</h4>
+		<h4 style="margin-top: 40px;">Art & Collection</h4>
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<c:forEach var="i" begin="0" end="3">
 				<div class="col-lg-3" style="margin-top: 25px;">
 					<div class="card shadow-sm">
 						<img src="${root}upload/${ArtList[i].getGoods_picture()}" style="width: 100%; height: 250px">
 						<div class="card-body">
-							<h3 class="card-text">${ArtList[i].getGoods_name()}</h3>
+							<h4 class="card-text">${ArtList[i].getGoods_name()}</h4>
 							<p class="card-text">${ArtList[i].getGoods_price()}원</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
@@ -103,7 +104,7 @@
 					<div class="card shadow-sm">
 						<img src="${root}upload/${OtherList[i].getGoods_picture()}" style="width: 100%; height: 250px">
 						<div class="card-body">
-							<h3 class="card-text">${OtherList[i].getGoods_name()}</h3>
+							<h4 class="card-text">${OtherList[i].getGoods_name()}</h4>
 							<p class="card-text">${OtherList[i].getGoods_price()}원</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">

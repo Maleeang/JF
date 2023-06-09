@@ -20,33 +20,49 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+input{
+	margin-bottom:10px;
+	width:100%;
+	height:40px;
+}
+</style>
 </head>
 <body>
 	<!-- 상단 매뉴부분 -->
 	<c:import url="/WEB-INF/views/include/menu.jsp" />
-	
-	<!-- 본문 -->
-	<div class="d-flex justify-content-center" style="margin-top: 80px">
-		<h2>결제정보</h2>
-	</div>
-	<div class="d-flex justify-content-center">
 
-		<form action="${root}cart/pay_pro" method="post">
-			<input type="text" name="name" placeholder="받으시는분"
-				required="required"><br /> <input id="member_post"
-				type="text" placeholder="코드" required="required" readonly><br />
-			<input id="member_addr" name="adress" type="text"
-				placeholder="도로명,지번주소" required="required" readonly>
-			<button type="button" onclick="findAddr()">주소찾기</button>
-			<br /> <input type="text" name="detail_adress" placeholder="상세주소"><br />
-			<input type="number" name="phone" placeholder="연락처"
-				required="required"><br />
-			<div class="text-right">
-				<b style="text-align: right;">총액 : ${totalprice}</b><br />
-				<button class="button" id="submitButton" type="submit">결제</button>
+	<!-- 본문 -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4" style="margin-top:80px;">
+				<h4 style="border-bottom:solid 1px #ccc;  padding-bottom:12px;">결제정보</h4>
+				<div style="margin-top:30px">
+					<form action="${root}cart/pay_pro" method="post">
+						<input type="text" name="name" placeholder="받으시는분"
+							required="required" onclick="findAddr()"><br/> 
+						<input id="member_post"
+							type="text" placeholder="코드" required="required" readonly onclick="findAddr()"><br />
+						<div class="input-group" style="padding-bottom:0px;">
+							<input id="member_addr" name="adress" type="text"
+							placeholder="도로명,지번주소" required="required" readonly style="width:70% !important;">
+							<button type="button" onclick="findAddr()" class="btn btn-dark" style="width:30% !important; height:40px;">주소찾기</button>
+						</div>
+ 						<input type="text" name="detail_adress" placeholder="상세주소"><br />
+						<input type="number" name="phone" placeholder="연락처"
+							required="required"><br />
+						<div class="text-right" style="border-top:solid 1px #ccc; padding-top:15px; margin-top:18px;">
+							<h5>결제금액&nbsp;&raquo;&nbsp;${totalprice}원</h5>
+							<button class="button btn btn-dark" id="submitButton" type="submit" style="width:100%; border-radius:5px; margin-top:10px;">결제하기</button>
+						</div>
+					</form>
+				</div>
 			</div>
-		</form>
+			<div class="col-lg-4"></div>
+		</div>
 	</div>
+
 	<!-- 하단 푸터부분 -->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
