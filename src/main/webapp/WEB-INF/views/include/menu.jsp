@@ -26,15 +26,15 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   <div class="collapse navbar-collapse" id="navMenu">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a href="${root}" class="nav-link">Jewelry&Accessories</a>
+        <a href="${root}search/category?category=Jewelry&Accessories" class="nav-link">Jewelry&Accessories</a>
       </li>
-      <li class="nav-item"><a href="${root}" class="nav-link">Clothing</a></li>
+      <li class="nav-item"><a href="${root}search/category?category=Clothing" class="nav-link">Clothing</a></li>
       <li class="nav-item">
-        <a href="${root}" class="nav-link">Art&Collection</a>
+        <a href="${root}search/category?category=Art&Collection" class="nav-link">Art&Collection</a>
       </li>
-      <li class="nav-item"><a href="${root}" class="nav-link">Other</a></li>
+      <li class="nav-item"><a href="${root}search/category?category=Other" class="nav-link">Other</a></li>
     </ul>
-    <form action="${root}/serch" method="GET">
+    <form action="${root}search?question=${question}" method="GET">
       <div class="search-bar input-group" style="margin-left: 70px">
         <input
           type="text"
@@ -42,6 +42,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           placeholder="Search item"
           aria-label="Recipient's username"
           aria-describedby="button-addon2"
+		  name="question"
           style="width: 270px; border-right:0px;"
         />
         <div class="input-group-append"></div>

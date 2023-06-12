@@ -102,6 +102,7 @@ public class ShopController {
 			return "shop/addGoods";
 		}
 		shopService.addGoodsInfo(goodsBean);
+		model.addAttribute("goodsBean", goodsBean);
 		return "shop/addGoods_success";
 	}
 	

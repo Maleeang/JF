@@ -4,5 +4,5 @@
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <script>
 	alert('상품이 등록되었습니다!')
-	location.href = "${root}shop/myShop"
+	location.href = "${root}shop/myShop?user_idx=${loginUserBean.user_idx}"
 </script>
