@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 public class UserBean {
 	private int user_idx;
 	@Size(min=2, max=8)
-	@Pattern(regexp="[가-힣]*", message="한글로 적어주세요.")
+	@Pattern(regexp="[가-힣]*", message="한글로 입력해주세요.")
 	private String user_name;
 	
 	@Size(min=4, max=20)

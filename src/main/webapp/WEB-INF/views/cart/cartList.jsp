@@ -25,7 +25,7 @@
 
 	<!-- 본문 -->
 	<div class="container" style="margin-top: 90px">
-		<h3 style="margin-bottom: 18px">Cart Item</h3>
+		<h3 style="margin-bottom: 18px"><img src="${root}image/cart.png" style="width:20px; height:30px; margin-right:10px; padding-bottom:5px;">Cart Item</h3>
 		<div class="row">
 			<div class="col-sm-7">
 				<c:forEach var="item" items="${cartList}">

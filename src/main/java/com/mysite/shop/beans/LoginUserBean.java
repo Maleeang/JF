@@ -15,11 +15,11 @@ public class LoginUserBean {
 	
 	private String user_name;
 	
-	@Size(min=4, max=20, message="id는 4~20자")
+	@Size(min=4, max=20, message="ID는 4~20자로 입력해주세요.")
 	@Pattern(regexp = "[a-zA-Z0-9]*", message="영문또는 숫자입력")
 	private String user_id;
 	
-	@Size(min=4, max=20, message="pw는 4~20자")
+	@Size(min=4, max=20, message="비밀번호는 4~20자로 입력해주세요.")
 	@Pattern(regexp = "[a-zA-Z0-9]*", message="영문또는 숫자입력")
 	private String user_pw;
 	

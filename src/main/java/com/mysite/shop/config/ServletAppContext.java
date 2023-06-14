@@ -20,14 +20,14 @@ public class ServletAppContext implements WebMvcConfigurer {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		// TODO Auto-generated method stub
+		
 		WebMvcConfigurer.super.addInterceptors(registry);
-		
+		//로그인요청 인터셉터
 		CheckLoginInterceptor checkLoginInterceptor = new CheckLoginInterceptor(loginUserBean);
-		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
+		InterceptorRegistration reg1 = registry.addInterceptor(checkLoginInterceptor);
 		
-		reg2.addPathPatterns("/user/modify", "/user/logout", "/board/*");
-		reg2.excludePathPatterns("/board/main");
+		reg1.addPathPatterns("/user/modify", "/user/logout", "/shop/**", "/cart/**", "/message/**");
+		reg1.excludePathPatterns("/shop/myShop", "/shop/goods_detail");
 	}
 	
 	// 정적 파일의 경로를 매핑한다.

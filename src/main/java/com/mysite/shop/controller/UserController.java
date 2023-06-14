@@ -85,7 +85,6 @@ public class UserController {
 	
 	@GetMapping("/modify")
 	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
-		//현재 로그인중인 loginUserBean에서 아이디와 이름값을 얻어 modifyUserBean에 넣음
 		userService.getModifyUserInfo(modifyUserBean);
 		return "user/modify";
 	}

@@ -21,6 +21,10 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link href="${root}css/shop.css" rel="stylesheet">
+<style>
+
+</style>
 </head>
 <body>
 	<!-- 상단 메뉴 부분 -->
@@ -29,17 +33,20 @@
 	<div class="container" style="margin-top: 100px">
 		<div class="row">
 			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
-				<div class="card shadow">
-					<div class="card-body">
+			<div class="col-sm-6 shop-box">
+				<div class="col-lg-12 shop-title">
+					Modify Shop
+				</div>
+				<div class="col-sm-12 shop-form">
+					<div class="col-sm-12 shop-form">
 						<form:form action="${root}shop/modify_myshop_pro" modelAttribute="modifyShopBean" enctype="multipart/form-data">
 							<div class="form-group">
-								<form:label path="shop_name">상점 이름</form:label> <form:input path="shop_name" class="form-control" />
+								<form:label class="form-control-label" path="shop_name">상점 이름</form:label> <form:input path="shop_name" class="form-control" />
 								<form:errors path="shop_name"/>
 							</div>
 							<div class="form-group">
-								<form:label path="category">카테고리</form:label>
-        						<form:select path="category" class="custom-select my-select">
+								<form:label class="form-control-label" path="category" style="margin-bottom:15px;">카테고리</form:label><br>
+        						<form:select path="category">
 						          <option>Jewelry&Accessories</option>
 						          <option>Clothing</option>
 						          <option>Art&Collection</option>
@@ -47,19 +54,19 @@
 						        </form:select>
 							</div>	
 							<div class="form-group">
-								<form:label path="description">상점 소개</form:label>
-								<form:textarea path="description" class="form-control"
-									rows="10" style="resize:none" />
+								<form:label class="form-control-label" path="description">상점 소개</form:label>
+								<form:textarea path="description" class="form-control content"
+									rows="10" />
 								<form:errors path='description' style='color:red' />
 							</div>
 							<div class="form-group">
-								<form:label path="upload_file">상점 이미지</form:label>
+								<form:label class="form-control-label" path="upload_file">상점 이미지</form:label>
 								<form:input type='file' path='upload_file' class="form-control"
 									accept="image/*" />
 							</div>
 							<div class="form-group">
 								<div class="text-right">
-									<button type="submit" class="btn btn-primary">수정하기</button>
+									<button type="submit" class="btn btn-outline-primary">수정하기</button>
 								</div>
 							</div>
 						</form:form>

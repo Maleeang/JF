@@ -132,6 +132,7 @@ form span {
 					<div class="col-lg-8">
 						<h6>Shop Name</h6>
 						<p style="margin-top:15px">${shopBean.shop_name}</p>
+						<a type="button" class="btn btn-dark" href="${root}message/send?receiver_idx=${goodsBean.user_idx}" style="border-radius:24px; min-width: 100px; width:100% !important; margin-top:50px">메세지보내기</a>
 						<a type="button" class="btn btn-dark" href="${root}shop/myShop?user_idx=${goodsBean.user_idx}" style="border-radius:24px; min-width: 100px; width:100% !important; margin-top:50px">판매자
 							상점 방문하기</a>
 					</div>

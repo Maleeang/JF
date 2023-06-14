@@ -23,6 +23,7 @@ public class SearchController {
 	@Autowired
 	SearchService searchService;
 	
+	//검색창 검색
 	@GetMapping("/search")
 	public String search(Model model,
 			@RequestParam(value="question") String question) {
@@ -33,11 +34,11 @@ public class SearchController {
 		return "search/result";
 	}
 	
+	//네브바 카테고리클릭
 	@GetMapping("/search/category")
 	public String category(Model model,
 			@RequestParam(value="category") String category) {
 
-		System.out.println(category);
 		if(category.contains("Jewelry")) {
 			category = "Jewelry&Accessories";
 		} else if(category.contains("Art")) {
