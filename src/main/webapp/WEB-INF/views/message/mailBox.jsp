@@ -125,7 +125,7 @@ background: #edf1f5;
 
 		<div class="d-flex w-100">
 			<!-- 사이드바 -->
-				<nav id="sidebar" style="min-height:1000px;">
+				<nav id="sidebar" style="min-height:1000px; padding-top:100px;">
 					<div class="p-4 pt-5">
 						<a href="#" class="img logo rounded-circle mb-5"
 							style="background-image: url(${root}upload/${ShopBean.shop_picture});"></a>
@@ -155,8 +155,8 @@ background: #edf1f5;
 										<li class="nav-item"><a class="nav-link active"
 											id="inbox-tab" data-toggle="tab" aria-controls="inbox"
 											href="#inbox" role="tab" aria-selected="true"> <span
-												class="d-block d-md-none"><i class="ti-email"></i></span> <span
-												class="d-none d-md-block"> INBOX</span>
+												class="d-block d-md-none"><i class="ti-email"></i></span> 
+										<span class="d-none d-md-block">INBOX</span>
 										</a></li>
 										<li class="nav-item"><a class="nav-link" id="sent-tab"
 											data-toggle="tab" aria-controls="sent" href="#sent"
@@ -172,7 +172,7 @@ background: #edf1f5;
 										<div>
 											<div class="row p-4 no-gutters align-items-center">
 												<div class="col-sm-12 col-md-6">
-													<h3>INBOX</h3>
+													<h3 style="font-weight:500">INBOX</h3>
 												</div>
 												<div class="col-sm-12 col-md-6">
 													<ul class="list-inline dl mb-0 float-left float-md-right">
@@ -217,7 +217,7 @@ background: #edf1f5;
 										<div>
 											<div class="row p-4 no-gutters align-items-center">
 												<div class="col-sm-12 col-md-6">
-													<h3>SENT</h3>
+													<h3 style="font-weight:500">SENT</h3>
 												</div>
 												<div class="col-sm-12 col-md-6">
 													<ul class="list-inline dl mb-0 float-left float-md-right">

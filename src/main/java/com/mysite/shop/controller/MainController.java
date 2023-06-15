@@ -48,6 +48,7 @@ public class MainController {
 			}
 		}
 
+		model.addAttribute("goodsList", goodsList);
 		model.addAttribute("JaList", JaList);
 		model.addAttribute("ClothingList", ClothingList);
 		model.addAttribute("ArtList", ArtList);

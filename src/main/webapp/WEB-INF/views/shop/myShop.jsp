@@ -75,7 +75,7 @@ a {
 	
 	<div class="d-flex">
 		<!-- 사이드바 -->
-		<nav id="sidebar" style="min-height: 1000px;">
+		<nav id="sidebar" style="min-height: 1000px;  padding-top:100px;">
 			<div class="p-4 pt-5">
 				<a href="#" class="img logo rounded-circle mb-5"
 					style="background-image: url(${root}upload/${ShopBean.shop_picture});"></a>
