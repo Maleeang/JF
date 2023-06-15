@@ -12,6 +12,11 @@
 <!-- Bootstrap CDN -->
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.2/examples/carousel-rtl/">
+<link rel="stylesheet" href="${root}css/templatemo.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -37,71 +42,8 @@ a {
 </head>
 <body>
 	<!-- 상단 메뉴 부분 -->
-	<nav class="navbar navbar-expand-md navbar-light bg-light"
-		style="border-bottom: solid 1px">
-		<a class="navbar-brand"
-			style="font-size: 40px !important; margin-left: 50px; margin-right: 40px"
-			href="${root}">JF</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navMenu">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navMenu">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a
-					href="${root}search/category?category=Jewelry&Accessories"
-					class="nav-link">Jewelry&Accessories</a></li>
-				<li class="nav-item"><a
-					href="${root}search/category?category=Clothing" class="nav-link">Clothing</a></li>
-				<li class="nav-item"><a
-					href="${root}search/category?category=Art&Collection"
-					class="nav-link">Art&Collection</a></li>
-				<li class="nav-item"><a
-					href="${root}search/category?category=Other" class="nav-link">Other</a></li>
-			</ul>
-
-			<form action="${root}search?question=${question}" method="GET">
-				<div class="search-bar input-group" style="margin-left: 70px">
-					<input type="text" class="form-control" placeholder="Search item"
-						name="question" style="width: 270px;" />
-					<div class="input-group-append"></div>
-					<button class="btn btn-white" type="submit"
-						style="border-color: #ccc; background-color: white">
-						<img src="${root}image/search2.svg" style="width: 20px;" />
-					</button>
-				</div>
-			</form>
-
-			<div class="d-flex justify-content-end" style="width: 100%;">
-				<ul class="navbar-nav ml-auto">
-					<c:choose>
-						<c:when test="${loginUserBean.userLogin == true }">
-							<div class="dropdown">
-								<a data-toggle="dropdown"><img src="${root}image/user.png"
-									style="width: 30px; height: 30px; margin-right: 30px" /> </a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="${root}user/modify">내 정보수정</a> <a
-										class="dropdown-item" href="${root}user/logout">로그아웃</a>
-								</div>
-							</div>
-							<a href="${root}cart/cartlist"><img
-								src="${root}image/cart.png"
-								style="width: 30px; height: 30px; margin-right: 30px" /></a>
-							<a href="${root}shop/join"><img src="${root}image/shop.png"
-								style="width: 30px; height: 30px; margin-right: 50px" /></a>
-						</c:when>
-						<c:otherwise>
-							<li class="nav-item"><a href="${root}user/login"
-								class="nav-link">로그인</a></li>
-							<li class="nav-item"><a href="${root}user/join"
-								class="nav-link" style="margin-right: 50px">회원가입</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
+	<c:import url="/WEB-INF/views/include/menu.jsp" />
+	
 	<!-- 슬라이드 -->
 	<div id="myCarousel" class="carousel slide" data-bs-ride="carousel"
 		style="height: 1000px !important">

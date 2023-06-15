@@ -19,6 +19,11 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <link href="${root}css/sign.css" rel="stylesheet">
+<link rel="stylesheet" href="${root}css/templatemo.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 </head>
 <body>
 	<!-- 상단 메뉴 부분 -->

@@ -52,7 +52,7 @@ select{
 }
 
 .content{
-  border: 2px solid #0DB8DE;
+  border: 2px solid #0DB8DE !important;
   border-radius: 0px;
   margin-bottom: 20px;
   padding-left: 0px;

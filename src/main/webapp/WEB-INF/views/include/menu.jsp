@@ -5,67 +5,67 @@
 <c:set var="root" value="${pageContext.request.contextPath}/" />
 
 <!-- 상단 메뉴 부분 -->
-<nav class="navbar navbar-expand-md navbar-light bg-light"
-	style="border-bottom: solid 1px">
-	<a class="navbar-brand"
-		style="font-size: 40px !important; margin-left: 50px; margin-right: 40px"
-		href="${root}">JF</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navMenu">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse justify-content-start" id="navMenu">
-		<ul class="navbar-nav">
-			<li class="nav-item"><a
-				href="${root}search/category?category=Jewelry&Accessories"
-				class="nav-link">Jewelry&Accessories</a></li>
-			<li class="nav-item"><a
-				href="${root}search/category?category=Clothing" class="nav-link">Clothing</a></li>
-			<li class="nav-item"><a
-				href="${root}search/category?category=Art&Collection"
-				class="nav-link">Art&Collection</a></li>
-			<li class="nav-item"><a
-				href="${root}search/category?category=Other" class="nav-link">Other</a></li>
-		</ul>
-		<form class="justify-content-center" action="${root}search?question=${question}" method="GET">
-			<div class="search-bar input-group justify-content-center"
-				style="margin-left: 70px">
-				<input type="text" class="form-control" placeholder="Search item"
-					name="question" style="width: 270px;" />
-				<div class="input-group-append"></div>
-				<button class="btn btn-white" type="submit"
-					style="border-color: #ccc; background-color: white">
-					<img src="${root}image/search2.svg" style="width: 20px;" />
-				</button>
-			</div>
-		</form>
-		<ul class="navbar-nav ml-auto justify-content-end">
-			<c:choose>
-				<c:when test="${loginUserBean.userLogin == true }">
-					<div class="dropdown">
-						<a data-toggle="dropdown"><img
-							src="${root}image/user.png"
-							style="width: 30px; height: 30px; margin-right: 30px" />
-						</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="${root}user/modify">내 정보수정</a> <a
-								class="dropdown-item" href="${root}user/logout">로그아웃</a>
-						</div>
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand text-success logo h1 align-self-center" style="font-weight:500 !important" href="${root}">
+                JF
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-start mx-lg-auto">
+                        <li class="nav-item" style="padding-left:30px;">
+                            <a class="nav-link" href="${root}">Home</a>
+                        </li>
+                        <li class="nav-item" style="padding-left:30px;">
+                            <a class="nav-link" href="about.html">Shop</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex">
+                <form class="justify-content-end" action="${root}search?question=${question}" method="GET">
+					<div class="search-bar input-group d-flex" style="padding-right:50px;">
+						<input type="text" class="form-control" placeholder="Search item"
+							name="question" />
+						<div class="input-group-append"></div>
+						<button class="btn btn-white" type="submit"
+							style="border-color: #ccc; background-color: white">
+							<img src="${root}image/search2.svg" style="width: 20px;" />
+						</button>
 					</div>
-					<a href="${root}cart/cartlist"><img
-						src="${root}image/cart.png"
-						style="width: 30px; height: 30px; margin-right: 30px" /></a>
-					<a href="${root}shop/join"><img
-						src="${root}image/shop.png"
-						style="width: 30px; height: 30px; margin-right: 50px" /></a>
+				</form>
+				<c:choose>
+				<c:when test="${loginUserBean.userLogin == true }">
+                    <a class="nav-icon position-relative text-decoration-none" href="${root}cart/cartlist">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                    </a>
+                    <div class="dropdown">
+	                    <a class="nav-icon position-relative text-decoration-none"  data-toggle="dropdown" href="#">
+	                        <i class="fa fa-fw fa-user text-dark mr-3" ></i>
+	                    </a>                    
+                    	<div class="dropdown-menu">
+                    		<a class="dropdown-item" href="${root}shop/join">내 상점</a> 
+							<a class="dropdown-item" href="${root}user/modify">내 정보수정</a> 
+							<a class="dropdown-item" href="${root}user/logout">로그아웃</a>
+						</div>
+                    </div>				
 				</c:when>
 				<c:otherwise>
-					<li class="nav-item"><a href="${root}user/login"
+					<li class="nav-item" style=" list-style-type: none;"><a href="${root}user/login"
 						class="nav-link">로그인</a></li>
-					<li class="nav-item" style="margin-right: 50px"><a
+					<li class="nav-item" style="margin-right: 50px; list-style-type: none;"><a
 						href="${root}user/join" class="nav-link">회원가입</a></li>
 				</c:otherwise>
-			</c:choose>
-		</ul>
-	</div>
-</nav>
+				</c:choose>
+
+
+                </div>
+            </div>
+
+        </div>
+    </nav>
