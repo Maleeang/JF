@@ -79,23 +79,23 @@ h3{
     <div class="container" style="margin-top:150px;">
     
     <header class="section-heading">
-        <h3 class="section-title" style="margin-bottom:60px">${question}</h3>
+        <h3 class="section-title" style="margin-bottom:60px">Recent products</h3>
     </header><!-- sect-heading -->
     
         
     <div class="row">
-		<c:forEach var="result" items="${resultGoods}">
+		<c:forEach var="i" begin="0" end="5">
 			<div class="col-lg-4" style="margin-top: 25px;">
 				<a
-					href="${root}shop/goods_detail?goods_idx=${result.getGoods_idx()}"><img
-					src="${root}upload/${result.getGoods_picture()}"
+					href="${root}shop/goods_detail?goods_idx=${goodsList[i].getGoods_idx()}"><img
+					src="${root}upload/${goodsList[i].getGoods_picture()}"
 					style="width: 100%; height: 450px !important"></a>
 				<div class="text-center" style="margin-top: 20px;">
 					<a
-						href="${root}shop/goods_detail?goods_idx=${result.getGoods_idx()}"
-						style="font-size: 30px; color:black !important;">${result.getGoods_name()}</a>
+						href="${root}shop/goods_detail?goods_idx=${goodsList[i].getGoods_idx()}"
+						style="font-size: 30px; color:black !important;">${goodsList[i].getGoods_name()}</a>
 					<p class="card-text"
-						style="font-size: 20px; font-weight: 500; margin-top: 10px;">&#8361;${result.getGoods_price()}</p>
+						style="font-size: 20px; font-weight: 500; margin-top: 10px;">&#8361;${goodsList[i].getGoods_price()}</p>
 				</div>
 			</div>
 		</c:forEach>

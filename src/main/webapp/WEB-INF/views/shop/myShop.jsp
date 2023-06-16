@@ -20,9 +20,6 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="${root}css/sidebar.css">
 <link rel="stylesheet" href="${root}css/templatemo.css">
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <style type="text/css">
 form span {
@@ -99,10 +96,10 @@ a {
 			</div>
 		</nav>
 		<!-- 상품 목록 -->
-		<div class="container py-5">
+		<div class="container py-5 ">
 		    <div class="row text-center text-white mb-5">
 		        <div class="col-lg-7 mx-auto">
-		            <h1 class="display-4">Product List</h1>
+		            <h2 class="display-4" style="color:#59ab6e; font-weight:500">Product List</h2>
 		        </div>
 		    </div>
 		    <div class="row">

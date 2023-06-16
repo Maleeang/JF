@@ -23,35 +23,88 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<style>
+.menu-category li{
+	list-style-type: none;
+  	margin-bottom:15px;
+}
+.menu-category li a {
+  	text-decoration-line: none;
+	color: black !important;
+	font-weight: 500;
+
+}
+.menu-category li a:hover {
+  	text-decoration-line: none;
+	color: #0056b3 !important;
+	font-weight: 500;
+
+}
+h3{
+	color:#59ab6e;
+}
+</style>
 </head>
 <body>
 	<!-- 상단 매뉴부분 -->
 	<c:import url="/WEB-INF/views/include/menu.jsp" />
 
 	<!-- 본문 -->
-	<div class="container">
-		<h4 style="margin-top: 60px;">${question}의 검색결과</h4>
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-			<c:forEach var="result" items="${resultGoods}">
-				<div class="col-lg-3" style="margin-top: 25px;">
-					<div class="card shadow-sm">
-						<img src="${root}upload/${result.getGoods_picture()}" style="width: 100%; height: 250px">
-						<div class="card-body">
-							<h4 class="card-text">${result.getGoods_name()}</h4>
-							<p class="card-text">${result.getGoods_price()}원</p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
-									<a href="${root}cart/add_cart?goods_idx=${result.getGoods_idx()}" type="button" class="btn btn-sm btn-outline-secondary">장바구니</a>
-									<a href="${root}shop/goods_detail?goods_idx=${result.getGoods_idx()}" type="button" class="btn btn-sm btn-outline-secondary">상세보기</a>
-								</div>
-								<small class="text-muted"></small>
-							</div>
-						</div>
-					</div>
+    <section class="section-main bg padding-y">
+    <div class="container">
+    
+    <div class="row" style="margin-top:40px;">
+        <aside class="col-md-4" >
+            <nav class="card">
+            	<h3 style="margin-left:30px; margin-top:30px; margin-bottom:30px;">Category</h3>
+                <ul class="menu-category">
+                    <li><a href="${root}search/category?category=Jewelry&Accessories">Jewelry&Accessories</a></li>
+                    <li><a href="${root}search/category?category=Clothing">Clothing</a></li>
+                    <li><a href="${root}search/category?category=Art&Collection">Art&Collection</a></li>
+                    <li><a href="${root}search/category?category=Others">Others</a></li>
+                    <li><a href="${root}search/allgoods">All Goods</a></li>
+                </ul>
+            </nav>
+        </aside> 
+        <div class="col-md-8">
+            <article class="banner-wrap">
+                <img src="${root}image/banner.jpg" class="w-100 rounded" style="max-height:400px">
+            </article>
+        </div> 
+    </div> 
+    </div> 
+    </section>
+
+    <section class="section-name padding-y-sm">
+    <div class="container" style="margin-top:150px;">
+    
+    <header class="section-heading">
+        <h3 class="section-title" style="margin-bottom:60px">${question}의 검색결과</h3>
+    </header><!-- sect-heading -->
+    
+        
+    <div class="row">
+		<c:forEach var="result" items="${resultGoods}">
+			<div class="col-lg-4" style="margin-top: 25px;">
+				<a
+					href="${root}shop/goods_detail?goods_idx=${result.getGoods_idx()}"><img
+					src="${root}upload/${result.getGoods_picture()}"
+					style="width: 100%; height: 450px !important"></a>
+				<div class="text-center" style="margin-top: 20px;">
+					<a
+						href="${root}shop/goods_detail?goods_idx=${result.getGoods_idx()}"
+						style="font-size: 30px; color:black !important;">${result.getGoods_name()}</a>
+					<p class="card-text"
+						style="font-size: 20px; font-weight: 500; margin-top: 10px;">&#8361;${result.getGoods_price()}</p>
 				</div>
-			</c:forEach>
-		</div>
-	</div>
+			</div>
+		</c:forEach>
+    </div> 
+    
+    </div>
+    </section>
+
+
 	
 	<!-- 하단 푸터부분 -->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />

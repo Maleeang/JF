@@ -50,7 +50,15 @@ public class CartService {
 	
 	//장바구니에 아이템추가
 	public void addCart(CartBean cartBean) {
-		cartMapper.addCart(cartBean);
+
+		if(cartMapper.isInCart(cartBean.getGoods_idx()) != null) {
+			int quantity = cartMapper.getQuantity(cartBean.getGoods_idx());
+			int updateQuantity = quantity + cartBean.getGoods_quantity();
+			System.out.println(updateQuantity);
+			cartMapper.updateQuantity(updateQuantity, cartBean);
+		} else {
+			cartMapper.addCart(cartBean);
+		}
 	}
 	
 	//장바구니목록에서 하나삭제

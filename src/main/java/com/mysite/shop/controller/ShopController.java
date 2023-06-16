@@ -117,7 +117,11 @@ public class ShopController {
 		
 		ShopBean shopBean = shopService.getMyShop(goodsBean.getUser_idx());
 		model.addAttribute("shopBean", shopBean);
-		return "shop/goods_detail";
+		if(loginUserBean.getUser_idx() == goodsBean.getUser_idx()) {
+			return "shop/myGoods_detail";
+		} else {
+			return "shop/goods_detail";
+		}
 	}
 	
 	@GetMapping("/modify_goods")

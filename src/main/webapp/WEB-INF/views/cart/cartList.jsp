@@ -23,6 +23,11 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<style>
+h3{
+	color:#59ab6e;
+}
+</style>
 </head>
 <body>
 	<!-- 상단 매뉴부분 -->
@@ -30,19 +35,19 @@
 
 	<!-- 본문 -->
 	<div class="container" style="margin-top: 90px">
-		<h3 style="margin-bottom: 18px"><img src="${root}image/cart.png" style="width:20px; height:30px; margin-right:10px; padding-bottom:5px;">Cart Item</h3>
+		<h3 style="margin-bottom: 18px"><i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>Cart Item</h3>
 		<div class="row">
 			<div class="col-sm-7">
 				<c:forEach var="item" items="${cartList}">
 					<div class="row"
 						style="margin-bottom: 30px; border-top: solid 1px #ccc; padding-top: 20px">
 						<div class="col-md-4">
-							<img src="${root}upload/${item.getGoods_picture()}"
-								style="width: 50%">
+							<a href="${root}shop/goods_detail?goods_idx=${item.getGoods_idx()}"><img src="${root}upload/${item.getGoods_picture()}"
+								style="width: 90%; height:150px; line-height:150px; vertical-align:middle;"></a>
 						</div>
 						<div class="col-md-3">
 							<h5>
-								<b>${item.getGoods_name()}</b>
+								<a class="bold" href="${root}shop/goods_detail?goods_idx=${item.getGoods_idx()}">${item.getGoods_name()}</a>
 							</h5>
 							<p style="padding-top: 20px">수량 :
 								${item.getGoods_quantity()}개
@@ -59,7 +64,7 @@
 			</div>
 			<div class="col-sm-1"></div>
 			<div class="col-sm-3" style="margin-right: 30px;">
-				<h4 style="margin-bottom: 30px">Payment</h4>
+				<h3 style="margin-bottom: 30px">Payment</h3>
 				<div class="form-check"
 					style="border-top: solid 1px #ccc; margin-bottom: 8px; padding-top: 8px">
 					<input class="form-check-input" type="radio"

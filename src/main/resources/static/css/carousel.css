@@ -6,6 +6,10 @@
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
+.container{
+  max-width: 1140 !important;
+}
+
 /* Carousel base class */
 .carousel {
   margin-bottom: 4rem;

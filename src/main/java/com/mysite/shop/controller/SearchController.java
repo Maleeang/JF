@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mysite.shop.beans.GoodsBean;
 import com.mysite.shop.beans.LoginUserBean;
 import com.mysite.shop.service.SearchService;
+import com.mysite.shop.service.ShopService;
 
 @Controller
 public class SearchController {
@@ -22,6 +23,9 @@ public class SearchController {
 
 	@Autowired
 	SearchService searchService;
+	
+	@Autowired
+	ShopService shopService;
 	
 	//검색창 검색
 	@GetMapping("/search")
@@ -34,7 +38,16 @@ public class SearchController {
 		return "search/result";
 	}
 	
-	//네브바 카테고리클릭
+	//네브바 shop클릭
+	@GetMapping("/search/shop")
+	public String shop(Model model) {
+
+		List<GoodsBean> goodsList = shopService.goodsListService(0);
+		model.addAttribute("goodsList", goodsList);
+		return "search/shop";
+	}
+	
+	//카테고리클릭
 	@GetMapping("/search/category")
 	public String category(Model model,
 			@RequestParam(value="category") String category) {
@@ -48,5 +61,15 @@ public class SearchController {
 		model.addAttribute("resultGoods", categoryGoods);
 		model.addAttribute("question", category);
 		return "search/categoryResult";
+	}
+	
+	//all goods
+	@GetMapping("/search/allgoods")
+	public String allGods(Model model) {
+
+		List<GoodsBean> goodsList = shopService.goodsListService(0);
+		model.addAttribute("resultGoods", goodsList);
+		model.addAttribute("question", "All Goods");
+		return "search/all_goods";
 	}
 }

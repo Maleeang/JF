@@ -48,7 +48,7 @@ public class CartController {
 	}
 
 	@GetMapping("/pay")
-	public String pay(@RequestParam(value="totalprice") int totalprice, Model model) {
+	public String pay(@ModelAttribute("PayBean") PayBean payBean, @RequestParam(value="totalprice") int totalprice, Model model) {
 		model.addAttribute("totalprice", totalprice);
 		return "cart/pay";
 	}

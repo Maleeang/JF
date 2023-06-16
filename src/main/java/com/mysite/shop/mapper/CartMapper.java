@@ -7,15 +7,13 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.session.RowBounds;
 
 import com.mysite.shop.beans.CartBean;
-import com.mysite.shop.beans.GoodsBean;
 
 @Mapper
 public interface CartMapper {
 	
-	//상품등록
+	//장바구니 등록
 	@Insert("insert into cart (cart_idx, goods_quantity, goods_idx, user_idx) " +
 			"values (cart_seq.nextval, #{goods_quantity}, #{goods_idx}, #{user_idx})")
 	void addCart(CartBean cartBean);
@@ -25,34 +23,31 @@ public interface CartMapper {
 			"where user_idx = #{user_idx}")
 	CartBean selectCartInfo(int user_idx);
 	
-	//전체 상품가져오기
-	@Select("select * " + 
-			"from goods " + 
-			"order by goods_idx desc")
-	List<GoodsBean> getContentList(RowBounds rowBounds);
-	
+	//장바구니 리스트 가져오기
 	@Select("select * " + 
 			"from cart C join goods G on C.goods_idx = G.goods_idx " +
 			"where C.user_idx = #{user_idx} " +
 			"order by cart_idx desc")
 	List<CartBean> getmyCartList(int user_idx);
 	
-	@Select("select count(*) from goods")
-	int getContentCnt();
-	
-	//상품하나의 정보 가져오기
+	//장바구니에 상품이 이미 들어있는지 확인
 	@Select("select * " +
-			"from goods " +
+			"from cart " +
 			"where goods_idx = #{goods_idx}")
-	GoodsBean getOneGoods(int goods_idx);
+	CartBean isInCart(int goods_idx);
 	
-	//상품수정
-	@Update("update goods " +
-			"set goods_name = #{goods_name}, goods_picture = #{goods_picture}, " +
-			"goods_category = #{goods_category}, goods_price = #{goods_price}, goods_des = #{goods_des}, user_idx = #{user_idx} " +
+	//수량가져오기
+	@Select("select goods_quantity " +
+			"from cart " +
 			"where goods_idx = #{goods_idx}")
-	void modifyGoods(GoodsBean goodsBean);
+	int getQuantity(int goods_idx);
 	
+	//상품이 이미있다면 수량만 추가
+	@Update("update cart " +
+			"set goods_quantity = #{updateQuantity} " +
+			"where goods_idx = #{cartBean.goods_idx}")
+	void updateQuantity( int updateQuantity, CartBean cartBean);
+
 	//장바구니정보삭제
 	@Delete("delete from cart where user_idx=#{user_idx}")
 	void deleteCartInfo(int user_idx);

@@ -6,7 +6,7 @@
 
 <!-- 상단 메뉴 부분 -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container d-flex justify-content-between align-items-center">
+        <div class="container d-flex justify-content-between align-items-center" style="max-width: 1140px !important;">
 
             <a class="navbar-brand text-success logo h1 align-self-center" style="font-weight:500 !important" href="${root}">
                 JF
@@ -23,11 +23,11 @@
                             <a class="nav-link" href="${root}">Home</a>
                         </li>
                         <li class="nav-item" style="padding-left:30px;">
-                            <a class="nav-link" href="about.html">Shop</a>
+                            <a class="nav-link" href="${root}search/shop">Shop</a>
                         </li>
                     </ul>
                 </div>
-                <div class="navbar align-self-center d-flex">
+                <div class="navbar align-self-center d-flex" style="box-shadow:none !important">
                 <form class="justify-content-end" action="${root}search?question=${question}" method="GET">
 					<div class="search-bar input-group d-flex" style="padding-right:50px;">
 						<input type="text" class="form-control" placeholder="Search item"
