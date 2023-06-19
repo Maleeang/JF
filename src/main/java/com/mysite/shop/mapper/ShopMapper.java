@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.session.RowBounds;
 
 import com.mysite.shop.beans.GoodsBean;
 import com.mysite.shop.beans.ReviewBean;
@@ -30,7 +29,7 @@ public interface ShopMapper {
 	@Select("select * " + 
 			"from goods " + 
 			"order by goods_idx desc")
-	List<GoodsBean> getContentList(RowBounds rowBounds);
+	List<GoodsBean> getGoodsList();
 	
 	//상점정보수정
 	@Update("update shop_table " +
@@ -43,10 +42,8 @@ public interface ShopMapper {
 			"from goods " +
 			"where user_idx = #{user_idx}" +
 			"order by goods_idx desc")
-	List<GoodsBean> getmyShopList(int user_idx, RowBounds rowBounds);
+	List<GoodsBean> getmyShopList(int user_idx);
 	
-	@Select("select count(*) from goods")
-	int getContentCnt();
 	
 	//상품등록
 	@Insert("insert into goods (goods_idx, goods_name, goods_picture, goods_category, goods_des, goods_price, user_idx) " +
@@ -74,7 +71,7 @@ public interface ShopMapper {
 			"values (review_seq.nextval, #{review_score}, #{review_content}, #{goods_idx}, #{user_idx}, sysdate, #{user_name})")
 	void addReview(ReviewBean reviewBean);
 	
-	//리뷰가져오기
+	//리뷰 리스트 가져오기
 	@Select("select * " + 
 			"from review " +
 			"where goods_idx = #{goods_idx}" +

@@ -38,7 +38,8 @@ public class MessageController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("/receive")
+	//메세지함
+	@GetMapping("/messagelist")
 	public String messageList(@ModelAttribute("MessageBean") MessageBean msgBean, Model model) {
 
 		List<MessageBean> msgList = msgService.getMessageService(loginUserBean.getUser_idx());
@@ -49,20 +50,10 @@ public class MessageController {
 		model.addAttribute("sentList", sentList);
 		model.addAttribute("loginUser", loginUserBean.getUser_idx());
 		
-		return "message/mailBox";
+		return "message/messagebox";
 	}
-	
-	@GetMapping("/sendlist")
-	public String sendList(@ModelAttribute("MessageBean") MessageBean msgBean, Model model) {
 
-
-		ShopBean shopBean = shopService.getMyShop(loginUserBean.getUser_idx());
-		model.addAttribute("ShopBean",shopBean);
-
-		model.addAttribute("loginUser", loginUserBean.getUser_idx());
-		return "message/sendlist";
-	}
-	
+	//메세지 보내기
 	@GetMapping("/send")
 	public String send(@ModelAttribute("msgBean") MessageBean msgBean, Model model,
 			@RequestParam(value="receiver_idx") int receiver_idx) {
@@ -89,7 +80,7 @@ public class MessageController {
 	@GetMapping("/delete")
 	public String deleteMessage(@RequestParam(value="message_idx") int msg_idx) {
 		msgService.deleteMessage(msg_idx);
-		return "message/recieve";
+		return "message/delete_message";
 	}
 
 }

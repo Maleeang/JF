@@ -44,6 +44,9 @@
                     <a class="nav-icon position-relative text-decoration-none" href="${root}cart/cartlist">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                     </a>
+                    <a class="nav-icon position-relative text-decoration-none" href="${root}message/messagelist?user_idx=${loginUserBean.user_idx}">
+                        <i class="fa fa-fw fa-envelope text-dark mr-1"></i>
+                    </a>
                     <div class="dropdown">
 	                    <a class="nav-icon position-relative text-decoration-none"  data-toggle="dropdown" href="#">
 	                        <i class="fa fa-fw fa-user text-dark mr-3" ></i>

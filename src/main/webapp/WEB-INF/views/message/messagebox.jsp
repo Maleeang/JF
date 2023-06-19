@@ -140,7 +140,6 @@ background: #edf1f5;
 							<ul class="list-unstyled components mb-5">
 								<li><a href="${root}shop/modify_myshop">상점 정보수정</a></li>
 								<li><a href="${root}shop/addGoods">상품등록</a></li>
-								<li><a href="${root}message/receive">메세지함</a></li>
 							</ul>
 						</c:if>
 					</div>

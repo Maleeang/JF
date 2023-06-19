@@ -42,7 +42,7 @@ public class SearchController {
 	@GetMapping("/search/shop")
 	public String shop(Model model) {
 
-		List<GoodsBean> goodsList = shopService.goodsListService(0);
+		List<GoodsBean> goodsList = shopService.goodsListService();
 		model.addAttribute("goodsList", goodsList);
 		return "search/shop";
 	}
@@ -67,7 +67,7 @@ public class SearchController {
 	@GetMapping("/search/allgoods")
 	public String allGods(Model model) {
 
-		List<GoodsBean> goodsList = shopService.goodsListService(0);
+		List<GoodsBean> goodsList = shopService.goodsListService();
 		model.addAttribute("resultGoods", goodsList);
 		model.addAttribute("question", "All Goods");
 		return "search/all_goods";

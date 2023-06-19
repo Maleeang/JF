@@ -23,9 +23,9 @@ public interface UserMapper {
 	void addUserInfo(UserBean joinUserBean);
 	
 	//로그인
-	@Select("select user_idx, user_name " + 
+	@Select("select user_idx, user_name, user_pw " + 
 			"from user_table " + 
-			"where user_id=#{user_id} and user_pw=#{user_pw}")
+			"where user_id=#{user_id}")
 	LoginUserBean getLoginUserInfo(LoginUserBean loginBean);
 	
 	@Select("select user_id, user_name " +

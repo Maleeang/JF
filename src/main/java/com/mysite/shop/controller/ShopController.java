@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mysite.shop.beans.CartBean;
 import com.mysite.shop.beans.GoodsBean;
 import com.mysite.shop.beans.LoginUserBean;
-import com.mysite.shop.beans.PageBean;
 import com.mysite.shop.beans.ReviewBean;
 import com.mysite.shop.beans.ShopBean;
 import com.mysite.shop.service.ShopService;
@@ -37,6 +36,7 @@ public class ShopController {
 	@Autowired
 	UserService userService;
 	
+	//상점이 없으면 상점만들기, 있으면 내 상점으로 이동
 	@GetMapping("/join")
 	public String join(@ModelAttribute("joinShopBean") ShopBean shopbean, Model model) {
 		if(shopService.getMyShop(loginUserBean.getUser_idx()) != null) {
@@ -58,16 +58,12 @@ public class ShopController {
 	
 	@GetMapping("/myShop")
 	public String myShop(@ModelAttribute("ShopBean") ShopBean shopBean, Model model,
-			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="user_idx") int user_idx) {
+			@RequestParam(value="user_idx") int user_idx) {
 		shopBean = shopService.selectShopInfo(user_idx);
 		model.addAttribute("ShopBean",shopBean);
 		
-		List<GoodsBean> goodsList = shopService.myShopListService(user_idx, page);
+		List<GoodsBean> goodsList = shopService.myShopListService(user_idx);
 		model.addAttribute("goodsList", goodsList);
-		
-		PageBean pageBean = shopService.getContentCnt(page);
-		model.addAttribute("pageBean", pageBean);
-		model.addAttribute("page", page);
 		
 		model.addAttribute("loginUser", loginUserBean.getUser_idx());
 		return "shop/myShop";
@@ -111,10 +107,12 @@ public class ShopController {
 		GoodsBean goodsBean = shopService.getOneGoods(goods_idx);
 		model.addAttribute("goodsBean", goodsBean);
 		
+		//리뷰 리스트
 		List<ReviewBean> reviewList = shopService.reviewListService(goods_idx);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("loginUserBean", loginUserBean);
 		
+		//판매자 상점
 		ShopBean shopBean = shopService.getMyShop(goodsBean.getUser_idx());
 		model.addAttribute("shopBean", shopBean);
 		if(loginUserBean.getUser_idx() == goodsBean.getUser_idx()) {

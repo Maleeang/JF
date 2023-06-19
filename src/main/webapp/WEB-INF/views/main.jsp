@@ -31,6 +31,7 @@ h2 {
 	margin-bottom: 40px;
 	font-size: 40px;
 	font-weight: 700;
+	color:#59ab6e;
 }
 
 a {
@@ -81,10 +82,13 @@ a {
                     <a class="nav-icon position-relative text-decoration-none" href="${root}cart/cartlist">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                     </a>
+                    <a class="nav-icon position-relative text-decoration-none" href="${root}message/messagelist">
+                        <i class="fa fa-fw fa-envelope text-dark mr-1"></i>
+                   	</a>      
                     <div class="dropdown">
 	                    <a class="nav-icon position-relative text-decoration-none"  data-toggle="dropdown" href="#">
 	                        <i class="fa fa-fw fa-user text-dark mr-3" ></i>
-	                    </a>                    
+	                    </a>              
                     	<div class="dropdown-menu">
                     		<a class="dropdown-item" href="${root}shop/join">내 상점</a> 
 							<a class="dropdown-item" href="${root}user/modify">내 정보수정</a> 
@@ -209,8 +213,8 @@ a {
 		<div class="text-center">
 			<h2>Recommend Items</h2>
 		</div>
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-			<div class="col-lg-4" style="margin-top: 25px;">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="margin-top: 70px;">
+			<div class="col-lg-4">
 				<a
 					href="${root}shop/goods_detail?goods_idx=${goodsList[3].getGoods_idx()}"><img
 					src="${root}upload/${goodsList[3].getGoods_picture()}"

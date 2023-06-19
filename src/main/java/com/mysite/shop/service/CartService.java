@@ -20,24 +20,12 @@ public class CartService {
 	@Autowired
 	private CartMapper cartMapper;
 	
-	@Value("${path.upload}")
-	private String path_upload;
-	
-	@Value("${page.listcnt}")
-	private int page_listcnt;
-	
-	@Value("${page.paginationcnt}")
-	private int page_paginationcnt;
-	
-	
-	//세션에 저장된 로그인 객체를 가져오기
 	@Resource(name = "loginUserBean")
 	private LoginUserBean loginUserBean;
 	
-	public CartBean checkCart(int user_idx) {
-		return cartMapper.selectCartInfo(user_idx);
-	}
-
+	@Value("${path.upload}")
+	private String path_upload;
+	
 	//내 카트불러오기
 	public List<CartBean> myCartListService(int user_idx) {
 		return cartMapper.getmyCartList(user_idx);
@@ -51,10 +39,9 @@ public class CartService {
 	//장바구니에 아이템추가
 	public void addCart(CartBean cartBean) {
 
-		if(cartMapper.isInCart(cartBean.getGoods_idx()) != null) {
+		if(cartMapper.isInCart(cartBean.getGoods_idx(), cartBean.getUser_idx()) != null) {
 			int quantity = cartMapper.getQuantity(cartBean.getGoods_idx());
 			int updateQuantity = quantity + cartBean.getGoods_quantity();
-			System.out.println(updateQuantity);
 			cartMapper.updateQuantity(updateQuantity, cartBean);
 		} else {
 			cartMapper.addCart(cartBean);

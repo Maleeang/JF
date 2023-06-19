@@ -18,11 +18,6 @@ public interface CartMapper {
 			"values (cart_seq.nextval, #{goods_quantity}, #{goods_idx}, #{user_idx})")
 	void addCart(CartBean cartBean);
 	
-	@Select("select * " +
-			"from shop_table " +
-			"where user_idx = #{user_idx}")
-	CartBean selectCartInfo(int user_idx);
-	
 	//장바구니 리스트 가져오기
 	@Select("select * " + 
 			"from cart C join goods G on C.goods_idx = G.goods_idx " +
@@ -33,8 +28,8 @@ public interface CartMapper {
 	//장바구니에 상품이 이미 들어있는지 확인
 	@Select("select * " +
 			"from cart " +
-			"where goods_idx = #{goods_idx}")
-	CartBean isInCart(int goods_idx);
+			"where goods_idx = #{goods_idx} and user_idx = #{user_idx}")
+	CartBean isInCart(int goods_idx, int user_idx);
 	
 	//수량가져오기
 	@Select("select goods_quantity " +

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,9 @@ import com.mysite.shop.service.UserService;
 public class UserController {
 	
 	@Autowired
+	private PasswordEncoder encoder;
+	
+	@Autowired
 	private UserService userService;
 	
 	@Resource(name="loginUserBean")
@@ -39,10 +43,14 @@ public class UserController {
 			return "user/join";
 		}
 		if(!joinUserBean.getUser_pw().equals(joinUserBean.getUser_pw2())) {
-			model.addAttribute("msg", "비밀번호가 같지 않습니다!");
+			model.addAttribute("msg", "비밀번호가 같지 않습니다.");
 			return "user/join";
 		}
-		//유효성 및 비번검사 후에 DB에 새유저를 저장
+		//암호화해서 비밀번호저장
+		String encodingPw = encoder.encode(joinUserBean.getUser_pw());
+		joinUserBean.setUser_pw(encodingPw);
+		//joinUserBean.setUser_pw2(encodingPw);
+
 		userService.addUserInfo(joinUserBean);
 		return "user/join_success";
 	}
@@ -68,8 +76,14 @@ public class UserController {
 		if(result.hasErrors()) {
 			return "user/login";
 		}
-		//입력된 id pw가 DB에 있는지 확인한다.
-		userService.getLoginUserInfo(loginBean);
+		//입력된 id로 객체를 받아오고 DB에 저장된 암호와 입력된 암호를 비교 후 세션에저장
+		LoginUserBean tempUser = userService.getLoginUserInfo(loginBean);
+		if(encoder.matches(loginBean.getUser_pw(), tempUser.getUser_pw())){
+			//세션 로그인객체에 정보를 입력
+			loginUserBean.setUser_idx(tempUser.getUser_idx());
+			loginUserBean.setUser_name(tempUser.getUser_name());
+			loginUserBean.setUserLogin(true); //로그인 상태 true
+		}
 		session.setAttribute("loginUserBean", loginUserBean);
 		if(loginUserBean.isUserLogin()== true) {
 			return "user/login_success";
@@ -99,7 +113,9 @@ public class UserController {
 			return "user/modify";
 		}
 		
-		//DB에 수정된 비밀번호 저장하기
+		//비밀번호 암호화 후 DB 수정하기
+		String encodingPw = encoder.encode(modifyUserBean.getUser_pw());
+		modifyUserBean.setUser_pw(encodingPw);
 		userService.modifyUserInfo(modifyUserBean);
 		return "user/modify_success";
 	}

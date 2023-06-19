@@ -19,7 +19,7 @@ public class UserService {
 	@Resource(name = "loginUserBean")
 	private LoginUserBean loginUserBean;
 
-	
+	//아이디 중복확인
 	public boolean checkuserIdExist(String user_id) {
 		
 		String user_name = userMapper.checkUserIdExist(user_id);
@@ -35,15 +35,16 @@ public class UserService {
 		userMapper.addUserInfo(joinUserBean);
 	}
 	
-	public void getLoginUserInfo(LoginUserBean loginBean) {
+	public LoginUserBean getLoginUserInfo(LoginUserBean loginBean) {
 		//DB에서 id pw로 검색하여 유저정보 조회
 		LoginUserBean tempLoginBean = userMapper.getLoginUserInfo(loginBean);
-		if(tempLoginBean != null) {
-			//세션 로그인객체에 정보를 입력
-			loginUserBean.setUser_idx(tempLoginBean.getUser_idx());
-			loginUserBean.setUser_name(tempLoginBean.getUser_name());
-			loginUserBean.setUserLogin(true); //로그인 상태 true
-		}
+		return tempLoginBean;
+//		if(tempLoginBean != null) {
+//			//세션 로그인객체에 정보를 입력
+//			loginUserBean.setUser_idx(tempLoginBean.getUser_idx());
+//			loginUserBean.setUser_name(tempLoginBean.getUser_name());
+//			loginUserBean.setUserLogin(true); //로그인 상태 true
+//		}
 	}
 	
 	public void getModifyUserInfo(UserBean modifyUserBean) {

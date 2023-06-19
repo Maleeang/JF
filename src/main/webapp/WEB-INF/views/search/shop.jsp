@@ -68,7 +68,7 @@ h3{
         </aside> 
         <div class="col-md-8">
             <article class="banner-wrap">
-                <img src="${root}image/banner.jpg" class="w-100 rounded" style="max-height:400px">
+                <img src="${root}image/shoptest.png" class="w-100 rounded" style="max-height:400px">
             </article>
         </div> 
     </div> 
