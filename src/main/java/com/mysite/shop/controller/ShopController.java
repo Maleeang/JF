@@ -118,10 +118,9 @@ public class ShopController {
 		
 		//결제여부확인
 		Boolean pay = false;
-		if(cartService.isPay(loginUserBean.getUser_idx(), goods_idx) != null) {
-			if(cartService.isPay(loginUserBean.getUser_idx(), goods_idx).getPay() == 1) {
-				pay = true;
-			}
+		System.out.println(cartService.isPay(loginUserBean.getUser_idx(), goods_idx));
+		if(!cartService.isPay(loginUserBean.getUser_idx(), goods_idx).isEmpty()) {
+			pay = true;
 		}
 		model.addAttribute("pay", pay);
 		

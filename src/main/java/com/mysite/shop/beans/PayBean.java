@@ -10,9 +10,30 @@ public class PayBean {
 	
 	private String phone;
 	
+	private int pay;
+	
+	private int goods_idx;
+	
 	private int cart_idx;
 	
 	private int user_idx;
+
+	
+	public int getPay() {
+		return pay;
+	}
+
+	public void setPay(int pay) {
+		this.pay = pay;
+	}
+
+	public int getGoods_idx() {
+		return goods_idx;
+	}
+
+	public void setGoods_idx(int goods_idx) {
+		this.goods_idx = goods_idx;
+	}
 
 	public String getName() {
 		return name;

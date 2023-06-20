@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.mysite.shop.beans.CartBean;
 import com.mysite.shop.beans.LoginUserBean;
+import com.mysite.shop.beans.PayBean;
 import com.mysite.shop.mapper.CartMapper;
 
 @Service
@@ -53,12 +54,12 @@ public class CartService {
 		cartMapper.deleteCart(cart_idx);
 	}
 	
-	public void checkPay(int user_idx) {
-		cartMapper.checkPay(user_idx);
+	public void insertPay(PayBean payBean) {
+		cartMapper.insertPay(payBean);
 	}
 	
-	public CartBean isPay(int user_idx, int goods_idx) {
-		CartBean cartBean = cartMapper.isPay(user_idx, goods_idx);
-		return cartBean;
+	public List<PayBean> isPay(int user_idx, int goods_idx) {
+		List<PayBean> payBeanlist = cartMapper.isPay(user_idx, goods_idx);
+		return payBeanlist;
 	}
 }

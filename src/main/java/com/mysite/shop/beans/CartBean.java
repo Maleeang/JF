@@ -15,18 +15,8 @@ public class CartBean {
 	private int goods_idx;
 	
 	private int user_idx;
-	
-	private int pay;
-	
+
 	private int total_price = goods_quantity*goods_price;
-
-	public int getPay() {
-		return pay;
-	}
-
-	public void setPay(int pay) {
-		this.pay = pay;
-	}
 
 	public String getGoods_name() {
 		return goods_name;

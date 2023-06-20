@@ -58,9 +58,15 @@ public class CartController {
 		if(result.hasErrors()) {
 			return "cart/pay";
 		}
-		
-		//결제여부 변경
-		cartService.checkPay(loginUserBean.getUser_idx());
+		List<CartBean> cartList = cartService.myCartListService(loginUserBean.getUser_idx());
+		for (CartBean cartBean : cartList) {
+			payBean.setGoods_idx(cartBean.getGoods_idx());
+			payBean.setPay(1);
+			payBean.setUser_idx(loginUserBean.getUser_idx());
+			cartService.insertPay(payBean);
+		}
+		//결제후 카트삭제
+		cartService.deleteCartInfo(loginUserBean.getUser_idx());
 		return "cart/pay_success";
 	}
 	
