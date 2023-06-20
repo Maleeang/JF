@@ -34,26 +34,12 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6 sign-box">
 				<div class="col-lg-12 sign-title">
-					Modify
+					비밀번호 변경
 				</div>
 				<div class="col-lg-12 sign-form">
 					<div class="col-lg-12 sign-form">
-						<form:form action='${root }user/modify_pro' method='post'
-							modelAttribute="modifyUserBean">
-							<form:hidden path="userIdChecked" value="true" />
-							<div class="form-group">
-								<form:label class="form-control-label" path="user_name">이름</form:label>
-								<form:input path="user_name" class='form-control'
-									readonly="true" />
-							</div>
-							<div class="form-group">
-								<form:label class="form-control-label" path="user_id">아이디</form:label>
-								<form:input path="user_id" class='form-control' readonly="true" />
-							</div>
-							<div class="form-group">
-								<form:label class="form-control-label" path="user_email">E-mail</form:label>
-								<form:input path="user_email" class='form-control' value="${user_email}"/>
-							</div>
+						<form:form action='${root }user/changepw_pro' method='post'
+							modelAttribute="changePwUserBean">
 							<div class="form-group">
 								<form:label class="form-control-label" path="user_pw">비밀번호</form:label>
 								<form:input type="password" path="user_pw" class='form-control'
@@ -65,11 +51,15 @@
 								<form:input type="password" path="user_pw2" class='form-control'
 									showPassword="true" />
 								<form:errors path='user_pw2' style='color:coral' />
+								<form:input type="hidden" path="user_id" class='form-control' value="${user_id}"
+									showPassword="true" />
+								<form:input type="hidden" path="user_email" class='form-control' value="${email}"
+									showPassword="true" />
 							</div>
 							<div style="color: coral">${msg }</div>
 							<div class="form-group">
 								<div class="text-right">
-									<form:button class='btn btn-outline-primary'>정보수정</form:button>
+									<form:button class='btn btn-outline-primary'>비밀번호 변경</form:button>
 								</div>
 							</div>
 						</form:form>

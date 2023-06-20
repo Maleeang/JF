@@ -31,6 +31,13 @@ public class UserService {
 		}
 	}
 	
+	//이메일로 아이디찾기
+	public String findId(String user_email) {
+		
+		String user_id = userMapper.findId(user_email);
+		return user_id;
+	}
+	
 	public void addUserInfo(UserBean joinUserBean) {
 		userMapper.addUserInfo(joinUserBean);
 	}
@@ -52,6 +59,7 @@ public class UserService {
 		
 		modifyUserBean.setUser_id(temp.getUser_id());
 		modifyUserBean.setUser_name(temp.getUser_name());
+		modifyUserBean.setUser_email(temp.getUser_email());
 		modifyUserBean.setUser_idx(loginUserBean.getUser_idx());
 	}
 
@@ -60,6 +68,11 @@ public class UserService {
 		modifyUserBean.setUser_idx(loginUserBean.getUser_idx());
 		
 		userMapper.modifyUserInfo(modifyUserBean);
+	}
+	
+	public void changePw(UserBean changePwUserBean) {
+		
+		userMapper.changePw(changePwUserBean);
 	}
 	
 	public String getUserName(int user_idx) {

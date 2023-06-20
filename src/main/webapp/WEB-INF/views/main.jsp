@@ -227,7 +227,7 @@ a {
 						style="font-size: 20px; font-weight: 500; margin-top: 10px;">&#8361;${goodsList[3].getGoods_price()}</p>
 				</div>
 			</div>
-			<div class="col-lg-4" style="margin-top: 25px;">
+			<div class="col-lg-4">
 				<a
 					href="${root}shop/goods_detail?goods_idx=${goodsList[4].getGoods_idx()}"><img
 					src="${root}upload/${goodsList[4].getGoods_picture()}"
@@ -240,7 +240,7 @@ a {
 						style="font-size: 20px; font-weight: 500; margin-top: 10px;">&#8361;${goodsList[4].getGoods_price()}</p>
 				</div>
 			</div>
-			<div class="col-lg-4" style="margin-top: 25px;">
+			<div class="col-lg-4">
 				<a
 					href="${root}shop/goods_detail?goods_idx=${goodsList[5].getGoods_idx()}"><img
 					src="${root}upload/${goodsList[5].getGoods_picture()}"

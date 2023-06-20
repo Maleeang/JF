@@ -123,34 +123,28 @@ label {
 				
 				</div>
 				<div class="col-lg-12 login-title">
-					Login
+					인증번호
 				</div>
 				<div class="col-lg-12 login-form">
 					<div class="col-lg-12 login-form">
 						<c:if test="${param.fail==true}">
 						<div class="alert alert-danger">
-							<h3>로그인 실패</h3>
-							<p>아이디 비밀번호를 확인해주세요</p>
+							<h4>인증번호 확인실패</h4>
+							<p>인증번호가 올바르지 않습니다.</p>
 						</div>
 						</c:if>
-						<form:form action="${root }user/login_pro" modelAttribute="loginBean">
+						<form action="${root}user/codeConfirm">
 							<div class="form-group">
-								<form:label class="form-control-label" path="user_id">E-mail</form:label> 
-								<form:input path="user_id" class="form-control"/>
-								<form:errors path="user_id" style="color:coral"/>
+								<label class="form-control-label">인증번호</label> 
+								<input class="form-control" name="input" type="text"/>
+								<input type="hidden" value="${key}" name="key"/>
+								<input type="hidden" value="${email}" name="email"/>
+								<form:errors style="color:coral"/>
 							</div>
-							<div class="form-group">
-								<form:label class="form-control-label" path="user_pw">Password</form:label>
-								<form:input path="user_pw" class="form-control" type="password"/>
-								<form:errors path="user_pw" style="color:coral"/>
-							</div>
-
 							<div class="form-group text-right">
-								<a href="${root}user/emailcheck" style="margin-right:50px;">아이디/비밀번호찾기</a>
-								<button type="submit" class="btn btn-outline-primary">로그인</button>
-
+								<button type="submit" class="btn btn-outline-primary">인증하기</button>
 							</div>
-						</form:form>
+						</form>
 					</div>
 				</div>
 			</div>

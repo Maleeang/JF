@@ -10,9 +10,12 @@ public class UserBean {
 	@Pattern(regexp="[가-힣]*", message="한글로 입력해주세요.")
 	private String user_name;
 	
-	@Size(min=4, max=20)
-	@Pattern(regexp="[a-zA-Z0-9]*", message="아이디는 4~20자.")
+	@Size(min=2, max=20)
+	@Pattern(regexp="[a-zA-Z0-9]*", message="아이디는 4~20자")
 	private String user_id;
+	
+	@Pattern(regexp="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*", message="이메일형식으로 입력해주세요.")
+	private String user_email;
 	
 	@Size(min=4, max=20)
 	@Pattern(regexp="[a-zA-Z0-9]*", message="비밀번호는 4~20자.")
@@ -26,6 +29,14 @@ public class UserBean {
 	@AssertTrue(message = "아이디 중복체크 해주세요")
 	private boolean userIdChecked;
 	
+	public String getUser_email() {
+		return user_email;
+	}
+
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
+	}
+
 	public UserBean() {
 		
 		userIdChecked = false; //UserBean이 생성될때는 false

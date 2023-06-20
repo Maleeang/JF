@@ -61,7 +61,12 @@
 								<!-- 중복 확인이 되었을경우 true가됨  -->
 								<form:hidden path="userIdChecked"/>
 								<form:errors class="idCheck" path="userIdChecked"/>
-							</div>	
+							</div>
+							<div class="form-group">
+								<form:label class="form-control-label" path="user_email" >E-mail</form:label> 
+								<form:input type="text" path="user_email" class="form-control" />
+								<form:errors path="user_email"/>
+							</div>
 							<div class="form-group">
 								<form:label class="form-control-label" path="user_pw" >비밀번호</form:label> 
 								<form:input type="password" path="user_pw" class="form-control" />

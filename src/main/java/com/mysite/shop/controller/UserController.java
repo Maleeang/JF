@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysite.shop.beans.LoginUserBean;
 import com.mysite.shop.beans.UserBean;
+import com.mysite.shop.service.EmailServiceImpl;
 import com.mysite.shop.service.UserService;
 
 @Controller
@@ -28,6 +29,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private EmailServiceImpl emailService;
 	
 	@Resource(name="loginUserBean")
 	private LoginUserBean loginUserBean;
@@ -98,8 +102,9 @@ public class UserController {
 	}
 	
 	@GetMapping("/modify")
-	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
+	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean, Model model) {
 		userService.getModifyUserInfo(modifyUserBean);
+		model.addAttribute("user_email", modifyUserBean.getUser_email());
 		return "user/modify";
 	}
 	
@@ -118,5 +123,69 @@ public class UserController {
 		modifyUserBean.setUser_pw(encodingPw);
 		userService.modifyUserInfo(modifyUserBean);
 		return "user/modify_success";
+	}
+	
+	@GetMapping("/emailcheck")
+	public String emailcheck(@RequestParam(value="fail", defaultValue="false") boolean fail) {
+		return "user/emailcheck";
+	}
+	
+	@GetMapping("/emailConfirm")
+	public String emailConfirm(@RequestParam String email, Model model) throws Exception {
+		
+		if(userService.findId(email) != null) {
+			String confirm = emailService.sendSimpleMessage(email);
+			model.addAttribute("key", confirm);
+			model.addAttribute("email", email);
+			return "user/codecheck";
+		} else {
+			return "user/emailcheck_fail";
+		}
+	}
+	
+	@GetMapping("/codeConfirm")
+	public String codeConfirm(@RequestParam String input, @RequestParam String key, @RequestParam String email, Model model) {
+		
+		model.addAttribute("email", email);
+		if(input.equals(key)) {
+			return "user/codeconfirm_success";
+		} else {
+			return "user/codeconfirm_fail";
+		}
+	}
+	
+	@GetMapping("/showid")
+	public String showId(@RequestParam String email, Model model) {
+		
+		String user_id = userService.findId(email);
+		model.addAttribute("user_id", user_id);
+		model.addAttribute("email", email);
+
+		return "user/showid";
+	}
+	
+	@GetMapping("/changepw")
+	public String changePw(@RequestParam String email, @ModelAttribute("changePwUserBean") UserBean changePwUserBean, Model model) {
+		
+		String user_id = userService.findId(email);
+		model.addAttribute("user_id", user_id);
+		model.addAttribute("email", email);
+
+		return "user/changepw";
+	}
+	
+	@PostMapping("/changepw_pro")
+	public String changePw_pro(@Valid @ModelAttribute("changePwUserBean") UserBean changePwUserBean, BindingResult result, Model model) {
+
+		if(!changePwUserBean.getUser_pw().equals(changePwUserBean.getUser_pw2())) {
+			model.addAttribute("msg", "비밀번호가 같지 않습니다!");
+			return "user/changepw";
+		}
+		
+		//비밀번호 암호화 후 DB 수정하기
+		String encodingPw = encoder.encode(changePwUserBean.getUser_pw());
+		changePwUserBean.setUser_pw(encodingPw);
+		userService.changePw(changePwUserBean);
+		return "user/changepw_success";
 	}
 }
