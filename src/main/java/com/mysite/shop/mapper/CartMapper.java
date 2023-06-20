@@ -14,14 +14,14 @@ import com.mysite.shop.beans.CartBean;
 public interface CartMapper {
 	
 	//장바구니 등록
-	@Insert("insert into cart (cart_idx, goods_quantity, goods_idx, user_idx) " +
-			"values (cart_seq.nextval, #{goods_quantity}, #{goods_idx}, #{user_idx})")
+	@Insert("insert into cart (cart_idx, goods_quantity, goods_idx, user_idx, pay) " +
+			"values (cart_seq.nextval, #{goods_quantity}, #{goods_idx}, #{user_idx}, 0)")
 	void addCart(CartBean cartBean);
 	
 	//장바구니 리스트 가져오기
 	@Select("select * " + 
 			"from cart C join goods G on C.goods_idx = G.goods_idx " +
-			"where C.user_idx = #{user_idx} " +
+			"where C.user_idx = #{user_idx} and C.pay = 0 " +
 			"order by cart_idx desc")
 	List<CartBean> getmyCartList(int user_idx);
 	
@@ -50,4 +50,17 @@ public interface CartMapper {
 	//장바구니목록에서 하나삭제
 	@Delete("delete from cart where cart_idx=#{cart_idx}")
 	void deleteCart(int cart_idx);
+	
+	//결제여부수정
+	@Update("update cart " +
+			"set pay = 1 " +
+			"where user_idx = #{user_idx}")
+	void checkPay(int user_idx);
+	
+	//결제여부확인
+	@Select("select * " + 
+			"from cart " +
+			"where user_idx = #{user_idx} and goods_idx = #{goods_idx} and pay = 1 " +
+			"order by cart_idx desc")
+	CartBean isPay(int user_idx, int goods_idx);
 }

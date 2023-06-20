@@ -20,6 +20,7 @@ import com.mysite.shop.beans.GoodsBean;
 import com.mysite.shop.beans.LoginUserBean;
 import com.mysite.shop.beans.ReviewBean;
 import com.mysite.shop.beans.ShopBean;
+import com.mysite.shop.service.CartService;
 import com.mysite.shop.service.ShopService;
 import com.mysite.shop.service.UserService;
 
@@ -35,6 +36,9 @@ public class ShopController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	CartService cartService;
 	
 	//상점이 없으면 상점만들기, 있으면 내 상점으로 이동
 	@GetMapping("/join")
@@ -111,6 +115,15 @@ public class ShopController {
 		List<ReviewBean> reviewList = shopService.reviewListService(goods_idx);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("loginUserBean", loginUserBean);
+		
+		//결제여부확인
+		Boolean pay = false;
+		if(cartService.isPay(loginUserBean.getUser_idx(), goods_idx) != null) {
+			if(cartService.isPay(loginUserBean.getUser_idx(), goods_idx).getPay() == 1) {
+				pay = true;
+			}
+		}
+		model.addAttribute("pay", pay);
 		
 		//판매자 상점
 		ShopBean shopBean = shopService.getMyShop(goodsBean.getUser_idx());

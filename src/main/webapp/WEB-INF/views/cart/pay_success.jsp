@@ -4,5 +4,5 @@
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <script>
 	alert('결제되었습니다!')
-	location.href = "${root}shop/myShop"
+	location.href = "${root}main"
 </script>

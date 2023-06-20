@@ -52,4 +52,13 @@ public class CartService {
 	public void deleteCart(int cart_idx) {
 		cartMapper.deleteCart(cart_idx);
 	}
+	
+	public void checkPay(int user_idx) {
+		cartMapper.checkPay(user_idx);
+	}
+	
+	public CartBean isPay(int user_idx, int goods_idx) {
+		CartBean cartBean = cartMapper.isPay(user_idx, goods_idx);
+		return cartBean;
+	}
 }

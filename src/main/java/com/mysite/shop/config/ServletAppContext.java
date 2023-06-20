@@ -27,7 +27,7 @@ public class ServletAppContext implements WebMvcConfigurer {
 		InterceptorRegistration reg1 = registry.addInterceptor(checkLoginInterceptor);
 		
 		reg1.addPathPatterns("/user/modify", "/user/logout", "/shop/**", "/cart/**", "/message/**");
-		reg1.excludePathPatterns("/shop/myShop", "/shop/goods_detail, /user/emailcheck");
+		reg1.excludePathPatterns("/shop/myShop", "/shop/goods_detail");
 	}
 	
 	// 정적 파일의 경로를 매핑한다.

@@ -108,26 +108,27 @@ h3{
 						</p>
 					</div>
 				</c:forEach>
-				<form:form action="${root}shop/write_review"
-					modelAttribute="ReviewBean">
-					<div class="row" style="margin-top: 20px; margin-left: 0px">
-						<form:select path="review_score" class="custom-select my-select"
-							style="width:160px;">
-							<option>⭐⭐⭐⭐⭐</option>
-							<option>⭐⭐⭐⭐</option>
-							<option>⭐⭐⭐</option>
-							<option>⭐⭐</option>
-							<option>⭐</option>
-						</form:select>
-						<form:input path="review_content" style="width:285px;"></form:input>
-					</div>
-					<form:input type="hidden" path="goods_idx" name="goods_idx"
-						value="${goodsBean.goods_idx}"></form:input>
-					<div class="text-right" style="margin-top:15px">
-						<button type="submit" class="btn btn-dark" style="border-radius:24px; min-width: 150px;">리뷰쓰기</button>
-					</div>
-
-				</form:form>
+				<c:if test="${pay == true}">
+					<form:form action="${root}shop/write_review"
+						modelAttribute="ReviewBean">
+						<div class="row" style="margin-top: 20px; margin-left: 0px">
+							<form:select path="review_score" class="custom-select my-select"
+								style="width:160px;">
+								<option>⭐⭐⭐⭐⭐</option>
+								<option>⭐⭐⭐⭐</option>
+								<option>⭐⭐⭐</option>
+								<option>⭐⭐</option>
+								<option>⭐</option>
+							</form:select>
+							<form:input path="review_content" style="width:285px;"></form:input>
+						</div>
+						<form:input type="hidden" path="goods_idx" name="goods_idx"
+							value="${goodsBean.goods_idx}"></form:input>
+						<div class="text-right" style="margin-top:15px">
+							<button type="submit" class="btn btn-dark" style="border-radius:24px; min-width: 150px;">리뷰쓰기</button>
+						</div>
+					</form:form>
+				</c:if>
 			</div>
 			<div class="col-lg-1"></div>
 			<div class="col-lg-5" style="margin-top: 35px; margin-left:30px">

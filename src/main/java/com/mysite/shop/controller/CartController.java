@@ -54,12 +54,13 @@ public class CartController {
 
 	@PostMapping("/pay_pro")
 	public String pay_pro(@Valid @ModelAttribute("PayBean") PayBean payBean, BindingResult result, Model model) {
-		//유효성검사 후에 DB에 상점정보를 저장
+
 		if(result.hasErrors()) {
 			return "cart/pay";
 		}
-		//결제완료 후 장바구니비우기
-		cartService.deleteCartInfo(loginUserBean.getUser_idx());
+		
+		//결제여부 변경
+		cartService.checkPay(loginUserBean.getUser_idx());
 		return "cart/pay_success";
 	}
 	
