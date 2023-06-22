@@ -70,6 +70,7 @@ public class CartController {
 		return "cart/pay_success";
 	}
 	
+	
 	@PostMapping("/add_cart")
 	public String addCart(@ModelAttribute("CartBean") CartBean cartBean, Model model) {
 		cartBean.setUser_idx(loginUserBean.getUser_idx());

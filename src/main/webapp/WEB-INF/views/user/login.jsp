@@ -135,7 +135,7 @@ label {
 						</c:if>
 						<form:form action="${root }user/login_pro" modelAttribute="loginBean">
 							<div class="form-group">
-								<form:label class="form-control-label" path="user_id">E-mail</form:label> 
+								<form:label class="form-control-label" path="user_id">Id</form:label> 
 								<form:input path="user_id" class="form-control"/>
 								<form:errors path="user_id" style="color:coral"/>
 							</div>

@@ -123,21 +123,21 @@ a {
 		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="bd-placeholder-img" src="${root}image/As.jpg"
+				<img class="bd-placeholder-img" src="${root}image/Main1.jpg"
 					width="100%" height="100%" aria-hidden="true"
 					preserveAspectRatio="xMidYMid slice" focusable="false">
 				<rect width="100%" height="100%" fill="#777" />
 				</img>
 			</div>
 			<div class="carousel-item">
-				<img class="bd-placeholder-img" src="${root}image/watch2.jpg"
+				<img class="bd-placeholder-img" src="${root}image/Main2.jpg"
 					width="100%" height="100%" aria-hidden="true"
 					preserveAspectRatio="xMidYMid slice" focusable="false">
 				<rect width="100%" height="100%" fill="#777" />
 				</img>
 			</div>
 			<div class="carousel-item">
-				<img class="bd-placeholder-img" src="${root}image/Art.png"
+				<img class="bd-placeholder-img" src="${root}image/Main3.jpg"
 					width="100%" height="100%" aria-hidden="true"
 					preserveAspectRatio="xMidYMid slice" focusable="false">
 				<rect width="100%" height="100%" fill="#777" />
